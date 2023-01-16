@@ -1,0 +1,179 @@
+@font-face {
+  font-family: "Afta-Sans";
+  src: url("../assets/fonts/afta-sans/AftaSansThin-Regular.otf") format("truetype");
+}
+@font-face {
+  font-family: "Chunk";
+  src: url("../assets/fonts/ChunkFive/Chunkfive.otf") format("truetype");
+}
+@font-face {
+  font-family: "Speck";
+  src: url("../assets/fonts/Speck-Display.otf") format("truetype");
+}
+@font-face {
+  font-family: "Paranoid";
+  src: url("../assets/fonts/Paranoid.otf") format("truetype");
+}
+.text-shadows {
+  text-shadow: 1px 1px 2px #515358;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+h1 {
+  display: inline-block;
+  margin-top: 1.3em;
+  vertical-align: top;
+  font-size: 3em;
+}
+
+.cart {
+  display: inline-block;
+  border-radius: 10%;
+  background-color: #515358;
+  color: #FCFCFC;
+  padding: 0.5em;
+  text-align: center;
+  height: 80px;
+  width: 80px;
+  min-height: 80px;
+}
+.cart p {
+  font-size: 1.2vmax;
+}
+
+.container {
+  padding: 2em 0;
+  width: 95%;
+  margin: auto;
+  box-shadow: 0 0 8px #515358;
+  background-image: url("../assets/images/pow-star/pow-star.png");
+}
+
+h1 {
+  animation-duration: 10s;
+  animation-name: float;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: linear;
+}
+
+.additional, .wrapper {
+  padding: 2em 0;
+  width: 95%;
+  margin: auto;
+}
+
+.featured {
+  background-image: url("../assets/images/pow-star/pow-star.png") !important;
+}
+
+h2 {
+  text-align: center;
+  font-family: "Paranoid";
+  font-size: 5vmax;
+}
+
+button {
+  background-color: orange !important;
+  background-image: url("../assets/images/wov/wov.png") !important;
+  box-shadow: 0 0 8px gainsboro;
+}
+
+button:hover {
+  animation-duration: 6s;
+  animation-name: float-button;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes float {
+  0% {
+    transform: translate(0px);
+  }
+  20% {
+    transform: translate(14px, -14px) scale(1.01);
+  }
+  40% {
+    transform: translate(-14px, -14px) scale(0.99);
+  }
+  60% {
+    transform: translate 0px, 14px;
+  }
+  80% {
+    transform: translate(-14px, 0px) scale(0.99);
+  }
+  100% {
+    transform: translate(-14px, -14px);
+  }
+}
+@keyframes float-button {
+  0% {
+    transform: translate(0px);
+  }
+  20% {
+    transform: translate(2px, -2px) scale(1.01);
+  }
+  40% {
+    transform: translate(-2px, -2px) scale(0.99);
+  }
+  60% {
+    transform: translate 0px, 2px;
+  }
+  80% {
+    transform: translate(-2px, 0px) scale(0.99);
+  }
+  100% {
+    transform: translate(-2px, -2px);
+  }
+}
+img {
+  width: 100px;
+}
+
+body {
+  font-family: "Afta-Sans";
+  background-color: gainsboro;
+  color: #515358;
+}
+
+h1 {
+  font-family: "Speck";
+  text-align: center;
+}
+
+.featured {
+  display: flex;
+  width: 98%;
+  margin: auto;
+  justify-content: space-around;
+  background-color: #909090;
+}
+.featured div {
+  width: 40%;
+}
+.featured h3 {
+  font-family: "Chunk";
+}
+
+.featured-content, .cheese-log, .beef-log {
+  border: 1px solid rgba 200, 200, 200, 0.5;
+  box-shadow: 0 0 8px silver;
+  background-color: white;
+  text-align: center;
+  padding: 0.5em;
+}
+
+.beef-log {
+  color: #F1534E;
+}
+
+.cheese-log {
+  color: #FFCF73;
+}
+
+/*# sourceMappingURL=main.css.map */

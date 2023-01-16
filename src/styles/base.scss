@@ -1,0 +1,48 @@
+@import "./reset.scss";
+
+// Favorite css theme
+@import "./prism-synthwave84.scss";
+
+// Alternate syntax highlighting theme
+// @import "~prismjs/themes/prism-tomorrow";
+
+@import "~prismjs/plugins/line-numbers/prism-line-numbers";
+
+
+// special code block styles for syntax highlighting with line numbers
+.gatsby-highlight pre[class*="language-"].line-numbers {
+    padding-left: 2.8em;
+}
+
+.gatsby-highlight {
+    background-color: transparent !important;
+    background-image: linear-gradient(to bottom, #2a2139 75%, #34294f);
+    border-radius: 0.3em;
+    margin: 0.5em 0;
+    padding: 1em;
+    overflow: auto;
+  }
+  
+  .gatsby-highlight pre[class*="language-"].line-numbers {
+    padding: 0;
+    padding-left: 2.8em;
+    overflow: initial;
+  }
+
+  .gatsby-resp-iframe-wrapper {
+    margin-bottom: 2rem;
+  }
+
+ a.breadcrumb__link {
+   line-height: 2.5rem;
+ }
+
+ h1:first-of-type {
+   line-height: 3.5rem;
+ }
+
+ @media (max-width: 600px) {
+  h1:first-of-type {
+    font-size: 1.7rem;
+  }
+ }
