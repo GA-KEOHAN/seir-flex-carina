@@ -6,18 +6,18 @@ day: 1
 type: "lecture"
 ---
 
-# Install-fest Phase One
+# Install-fest 
 
 <br>
-<br>
 
 
-For the first phase of "install-fest", we'll install or verify the installation of the following tools on our machines:
+
+For "install-fest", we'll install or verify the installation of the following tools on our machines:
 
 - Slack
 - Zoom
 - Homebrew (For Mac and Linux)
-- Xcode (For MAC Only)
+- Xcode (For MAC Only and this can take sometime)
 - VS Code
 - Node (Go to Nodejs.org and download LTS version, or google how to install Node Version Manger on your OS so you can switch versions on the fly)
 - Git / Github / Github Enterprise
@@ -27,8 +27,7 @@ For the first phase of "install-fest", we'll install or verify the installation 
 
 <br>
 <br>
-<br>
-<br>
+
 
 
 
@@ -55,9 +54,23 @@ Remember to drag the Slack app into the Applications folder when you open the do
 
 ## Homebrew (Mac and Linux)
 
-Homebrew is a package manager that we will use to install various command line tools in our class.
+[Homebrew is a package manager](https://brew.sh/) that we will use to install various command line tools in our class.
 
-Open up terminal, and paste the following command to install Homebrew. You might be prompted to install XCode Command Line Tools during the install process.
+### Confirm if Homebrew has already been installed.
+Open up terminal and paste the following:
+
+```shell
+brew update
+```
+
+### And then check to see if everything is in working order
+
+```shell
+brew doctor
+```
+
+### Install Homebrew
+If brew is not installed than paste the following command to install Homebrew. You might be prompted to install XCode Command Line Tools during the install process.
 
 ```shell
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -65,9 +78,14 @@ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/
 
 If you are prompted to install the XCode CLI, say yes and your homebrew installation will continue.
 
+Please make sure to following the **Next steps:** instructions to add the two commands to your terminals PATH.  The actual path will contain your user account info as in **/Users/billieheidelberg/**
+
+![](https://i.imgur.com/tHkIUO5.png)
+
 After the installation process, run the command `brew doctor`. If any warnings or errors are displayed, we will need to resolve them before proceeding with the rest of the install fest.
 
-Lastly, make sure to run `brew update` to make sure you have the latest lists of available software.
+Also try running `brew update` to make sure you have the latest lists of available software.
+
 
 <br>
 <br>
@@ -82,8 +100,11 @@ xcode-select --install
 
 If you need to, you can install Xcode through the App Store. (You probably don't need to.) [Link here](https://itunes.apple.com/us/app/xcode/id497799835?mt=12)
 
-<br>
-<br>
+If **Xcode** is already installed you will see the message below and nothing more is required at this time.
+
+```shell
+xcode-select: error: command line tools are already installed, use "Software Update" in System Settings to install updates (what does it mean?
+```
 
 ## Visual Studio Code
 
@@ -94,27 +115,26 @@ Text editors are a personal choice. One of the most popular open source text edi
 Download and install VS Code from [https://code.visualstudio.com/](https://code.visualstudio.com/).
 
 **Important**: Be sure that VS Code is in your Mac's `Applications` folder.
-
-<br>
-<br>
-
 #### Add Ability to Launch VS Code by typing `code` (Mac Only)
 
 1. Launch VS Code using spotlight (`command + space` - then start typing `vs c` until you see the app, then press enter).
-2. Type `shift + command + P` to open the command palette.
+2. Hold `shift + command + P` to open the command palette.
 3. Start typing `shell command` and when you the<br>`Shell Command: Install 'code' command in PATH` command - click it!
+
+![](https://i.imgur.com/etKvCh3.png)
 4. Quit VS Code and Terminal.
 5. Relaunch Terminal
 6. You should now be able to open a folder to edit by typing `code .`
 
 Check [this link](https://code.visualstudio.com/docs/setup/mac) for troubleshooting if you run into issues.
 
-<br>
-<br>
-
 ## Git
 
-Git may already be installed, you can check by running `git --version` in terminal
+Git may already be installed, you can check by running  in terminal
+
+```shell
+git --version
+`````
 
 Git is the version control software we will be using - it's extremely popular.
 
@@ -135,18 +155,28 @@ brew install git
 
 You should have already opened a personal Github account, however, you need to have a General Assembly Github Enterprise account as well. <br>You can get one by signing up here: [https://git.generalassemb.ly/join](https://git.generalassemb.ly/join)
 
-<br>
-<br>
 
 #### Configuring a Global gitignore (Optional Step)
 
 Everyone should have a global **git ignore** file so that you don’t have to worry about making the appropriate entries in a project’s git ignore.
 
-First, create the file:  `touch ~/.gitignore_global`
+First, create the file
+```shell
+touch ~/.gitignore_global
+```  
 
-Next, configure git to use this file:  `git config --global core.excludesfile ~/.gitignore_global`
+Next, configure git to use this file
 
-Finally, lets put some good stuff in there:
+```shell
+git config --global core.excludesfile ~/.gitignore_global
+```  
+
+Open the file in VSCode
+```shell
+code ~/.gitignore_global
+```  
+
+Finally, copy/paste the following into the file.  
 
 ```shell
 # This is a list of rules for ignoring files in every Git repositories on your computer.
@@ -264,8 +294,6 @@ Install [Spectacle](https://www.spectacleapp.com/) for resizing windows.
 
 This free "productivity" tool is invaluable when it comes to minimizing the time spent sizing windows using the mouse.
 
-<br>
-<br>
 
 ## Installing Imgur (Mac Only)
 
@@ -280,6 +308,5 @@ Node is a Javascript runtime that allows us to run javascript code out of the br
 
 ## Other Optional Cool things worth installing
 - Starship.rs: Make your terminal prompt more coloful and useful (google how to install)
-- Node Version Manager: Allows you to switch between versions of node (google how to install)
 - Notable: Great application for taking notes using markdown syntax (the same syntax you'll be using for writing docs)
 - Discord: Works like slack, many cohorts create their own discord or slack workspaces for talking amongst themselves and group work/study.

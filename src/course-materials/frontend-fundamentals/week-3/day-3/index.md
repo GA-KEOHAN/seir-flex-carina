@@ -22,4 +22,4 @@ topics: "DOM Manipulation With jQuery"
 
 #### Lesson Recordings
 
-All lesson recordings can be found [here](https://git.generalassemb.ly/SEIR-Jedi/orientation/wiki/Class-Schedule) on the class schedule wiki.
+All lesson recordings can be found in the recordings slack channel

@@ -72,12 +72,12 @@ Everyone introduce themselves, full list of team on course details page.
 If you aren't in one of these channels message an instructional team member to add you.
 
 	- classroom
-	- outcomes
 	- random
 	- help
 	- resources
 	- homework
 	- recordings
+	- outcomes
 	
 	
 
@@ -86,7 +86,7 @@ If you aren't in one of these channels message an instructional team member to a
 
 #### How To:
 
-##### Communicate in one of the ringo channels:
+##### Communicate in one of the channels:
 
 	- @username
 		- sends a notification to a specific user
@@ -118,7 +118,6 @@ If you aren't in one of these channels message an instructional team member to a
 Our video conferencing tool!
 
 - Share video always during class time
-- We use breakout rooms for group meetings
-- Don't forget to mute!
+- Always be on mute unless asking a question or to make a comment.
 - You can share your screen with us / anyone
-
+- We use breakout rooms for group meetings

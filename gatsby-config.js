@@ -4,7 +4,7 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    title: "SEIR-Tumeric",
+    title: "SEIR-Carina",
     author: "DanielJS",
     currentYear: new Date().getFullYear(),
     description:
@@ -18,7 +18,7 @@ module.exports = {
     ],
     homeworkSubmissionLink: {
       title: "Submit Homework",
-      href: "https://docs.google.com/forms/d/e/1FAIpQLSepMV2RdnTTMeW_1ucHefdCvhxPW1FgJrwYs0eqGPW4QsfDpA/viewform",
+      href: "https://docs.google.com/forms/d/e/1FAIpQLSdT1yN4C7_iRR2pJLUwCfH-ZbMLW_aJv4wWnCMdD-htbrk2qg/viewform",
     },
   },
   plugins: [

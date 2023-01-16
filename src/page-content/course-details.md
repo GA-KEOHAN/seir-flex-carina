@@ -4,39 +4,33 @@ title: "Course Details"
 
 # Course Details
 
-<hr>
-<br>
-<br>
-<br>
 
 ## Graduation Requirements
 
-You will be required to meet 80% completion of homework assignments at the end of each unit, and complete all project requirements. As this is an intense, fast-paced course, only 3 absences will be allowed.
-
-<br>
-<br>
-<br>
-
-
+Graduation requirements are as follows:
+  - **80% completion** of homework assignments at the end of each unit.  
+  - submission and completion of all 4 unit projects
+  - no more than 24hrs of absences.  Mon/Thur = 4hrs / Saturday = 8, Outcomes = 2 and 3 tardy's = 4hr
 
 ## Schedule and Holidays (Eastern Time)
 
-- Start date: **9/20/2022**
-- End date: **4/04/2022**
-- Tuesday & Wedesday: **6:30pm-10:45pm**
+- Start date: **1/23/2023**
+- End date: **7/22/2023**
+- Monday & Thursday: **6:30pm-10:45pm**
 - Saturday: **10am-6pm**
-- Holidays:  11/12, 11/23, 11/24, 11/26, 12/24, 12/27-12/31, 1/14, 2/18
+- Holidays:  **Sat 2/18, Mon 2/20, Sat 5/27, Mon 5/29, Sat 6/17, Mon 6/19**
 
 ## Office Hours/Open QA Hours:
 
 | Day of Week | Time | Head of Session |
+|---|---|---|
 | Sunday | N/A | N/A |
-| Monday | N/A | N/A |
-| Tuesday | 10:00pm - 10:45pm | That Night's Instructor |
-| Wednesday | 10:00pm - 10:45pm | That Night's Instructor |
-| Thursday | N/A | N/A |
+| Monday | 10:00pm - 10:45pm | That Night's Instructional Team |
+| Tuesday |  N/A | N/A |
+| Wednesday |  N/A | N/A |
+| Thursday | 10:00pm - 10:45pm | That Night's Instructional Team |
 | Friday | N/A | N/A |
-| Saturday | 5:00pm - 6:00pm | That Day's Instructor |
+| Saturday | 5:00pm - 6:00pm | That Day's Instructor Team |
 
 
 <br>
@@ -61,16 +55,11 @@ You will be required to meet 80% completion of homework assignments at the end o
 
 | Name  | Role |
 | ----- | ----- |
-| Alex Merced  |  Lead Instructor 
-| David Yim |  Lead Instructor 
-| Billie Heidelberg |  Lead Instructor 
-| Max Walker | Instructional Associate 
-| Hisham Raihan | Instructional Associate 
-| Kyle Canamar | Instructional Associate  
-| Meshia Reed | Teachers Assistant
-| August McConnell | Teachers Assistant
-| Amber Alhussaini | Outcomes Coach
-| Anthony Hubbard | Outcomes Coach
+| Joe Keohan |  Lead Instructor 
+| Christopher South |  Lead Instructor 
+| August McConnell | Instructional Associate 
+| David Acosta | Instructional Associate 
+| Brittany Dawson | Outcomes Coach
 
 <br>
 <br>
@@ -78,26 +67,10 @@ You will be required to meet 80% completion of homework assignments at the end o
 
 ## Office Hours
 
-- **August McConnel**: office hours are M/F 7pm-10pm EST and Th 8:30pm - 10:30pm EST. [Office Hours Calendar](https://calendly.com/a-mcconnell-dev/office-hours-help?month=2022-09)
-
-- **Meshia Reed**: Sunday 3:00PM - 5:30pm EST and Monday 5:30pm - 8:00pm EST. [Office Hours Calendar](https://calendly.com/meshia-reed/ta-office-hour-25-min)
-
-- **Billie Heidelberg**: Mondays & Fridays 3:30-4:30PM EST
-
-- **Kyle Canamar**: Sundays 7-9pm EST
-
-- **Last Hour of Each Class**: Tuesday/Wednesday 10-10:45 and Saturdays 5-6pm
-
-<br>
-<br>
-<br>
-
+- **Always the Last Hour of Each Class**: Monday/Thursday 10-10:45 and Saturdays 5-6pm
+- Any additional hours that the team has added to the [Office Hours Tracker](https://docs.google.com/spreadsheets/d/1rdVTCg2cSZrm1nuunWcBlPN8yJjIVxtBOCjncpCT-H0/edit#gid=498320327)
 
 ## Communication
-
-<br>
-<br>
-<br>
 
 #### Post to help slack channel if:
 
@@ -120,12 +93,6 @@ You will be required to meet 80% completion of homework assignments at the end o
 
 **Remember we are here to help you! Please reach out with any questions**
 
-<br>
-<br>
-<br>
-
-
-
 ## Course Overview
 Learn to code in JavaScript, the native language of the web used by developers the world over.
 
@@ -133,60 +100,34 @@ Build a single-page web app that persists user data and connects to services lik
 
 Learn the fundamentals of object-oriented programming while receiving support from industry experts and a community of peers.
 
-<br>
-<br>
-<br>
-
-
-
 ## Lab/Homework Submission Procedure
-
-<br>
 
 ### We will walk through this together the first time!
 
 * Depending on the assignment, your homework will be completed on [repl.it](https://repl.it/), [CodeSandbox](https://codesandbox.io/), or [GitHub](https://github.com/)
-* Fill out this [Google Form](https://www.google.com) with a link for that specific homework. It will be the same Google Form for each homework
+* Fill out this [Submit Homework](https://docs.google.com/forms/d/e/1FAIpQLSdT1yN4C7_iRR2pJLUwCfH-ZbMLW_aJv4wWnCMdD-htbrk2qg/viewform) link for that specific homework. It will be the same Google Form for each homework
 * **Homework is due one week from the day it was assigned**
 * If homework is marked `incomplete`, you may be asked to re-submit it; a new timeline will be discussed how long you have to re-submit the homework
-
-<br>
-<br>
 
 ### Homework/Project Assignments & Due Dates
 
 Will be posted in the homework slack channel
 
-<br>
-<br>
-
 ## Lesson Recordings
 
-will be posted in the recordings slack channel
+Will be posted in the recordings slack channel
 
-<br>
+<!-- *Also, be sure to checkout the video below for more detail*
 
-
-*Also, be sure to checkout the video below for more detail*
-
-<br>
-<br>
-<br>
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/wGSg8CybMG8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-
-<br>
-<br>
-<br>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/wGSg8CybMG8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
 
 
 ## Managing your Projects
 * At the end of each unit, you will create a repo in your personal github.com (not GA's github enterprise) for your project... i.e. Unit One - Project One, Unit Two - Project Two ...etc
 * Pushing your labs/homework to your personal github is not recommended
 
-<br>
-<br>
+
+
 
 ## What We Expect From You
 
@@ -201,23 +142,10 @@ will be posted in the recordings slack channel
 Students must complete at least 80% on all homework assignments
 For an assignment to be marked complete, students must complete 100% of the minimum tasks specified in that assignment.
 
-<br>
-<br>
- 
-
 
 ####  PROJECTS
 - Students must complete all of the minimum technical requirements for each unit project
 - Parameters for minimum requirements will be explained when the project is assigned
-
-<br>
-<br>
-
-####  ZERO ACCOUNT BALANCE
-- Students must have no outstanding balances due on their account
-
-<br>
-<br>
 
 ####  ATTENDANCE 
 - Have at least an 80% attendance record (you’ve missed 24 hours total or less of class)
@@ -234,16 +162,11 @@ Students who have fulfilled all of the above requirements will receive a digital
 
 Please feel free to contact your instructional team, or a member from student experience  if you have questions regarding this policy.
 
-<br>
-<br>
 
 ## Additional Expectations
 * Take initiative.
 * Ask for help.
 * Practice, practice, practice.
-
-<br>
-<br>
 
 ### Classroom Culture
 
@@ -253,9 +176,6 @@ Let's all agree to:
 * Participate in class
 * Be on video with mute on during class
 
-<br>
-<br>
-
 ### How To Succeed in a Remote Environment
 
 * Communication is key! Please respond in a "reasonable" timely manner if we contact you via slack or email.
@@ -264,9 +184,6 @@ Let's all agree to:
 * Carve out at least 15-20 hours outside a class a week for review and homework. Expect the next 3 or so months to be out of the norm for you. If you have to carve out a personal hour during a family vacation, you will have to do this!
 * Make use of office hours! Find a time that works for you and don't cancel on your instructors :)
 * Hold yourself accountable. Don't let yourself fall behind!
-
-<br>
-<br>
 
 ## Group Work Formats
 We will be using breakout rooms to get more personalized learning environments. Make sure to get to know your classmates and use each other as teachers!

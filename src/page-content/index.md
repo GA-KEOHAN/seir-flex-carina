@@ -2,22 +2,19 @@
 title: "Home"
 ---
 
-# SEIR 9/12/2022 - "Turmeric"
+# SEIR Flex 1/23/2023 - Carina
 
-![Turmeric](https://i.imgur.com/eHDiQEO.png)
-
-This website contains assignments and materials for General Assembly's SEIR Program.
-
-<p style="color: crimson;"><b>Scroll down to access curriculum content ↓</b></p>
-
+Below is the image of the **Carina Nebula** captured by the **Webb** telescope.
 <br>
-<br>
-<br>
+![Carina](https://i.imgur.com/T9yRQjG.png)
+
+This website contains assignments and materials for General Assembly's SEIR Flex Program.
 
 ## Prep Before Day 1
 [Read this guide on how to best prepare for Day 1](https://gist.github.com/AlexMercedCoder/a5450f70426294a994660d4d0b5c3936)
 
 ## Orientation Repository
+**[Orientation Repo](https://git.generalassemb.ly/AlexMerced/orientation)**
 
 Here you'll find
 - Video on your day to day tools (Git, VSCode, Bash)
@@ -25,34 +22,26 @@ Here you'll find
 - Cheatsheets for quick reference on course content
 - Student Handbook
 - Much more!
-
-**[Orientation Repo](https://git.generalassemb.ly/AlexMerced/orientation)**
-
-<br>
-<br>
-<br>
-
 ## Curriculum Overview
 
 All material is subject to change at Instructors discretion.
 
 <p style="color: crimson; text-decoration: underline"><b>Click on Unit Heading to Access Content 🔍</b></p>
 
-<br>
-<br>
-<br>
-
 ### Unit Projects
 
 | Unit  | Project Requirements | 
 | ----- | ------ |
 | 1  | [Project 1 Requirements and Guide](/unit-projects/unit-one-project-requirements/) |
-| 1  | [Optional Trivia Game Track for Project 1](/unit-projects/unit-one-alt-project-requirements/) |
+| 2  | Project 2 Requirements and Guide |
+| 3  | Project 3 Requirements and Guide |
+| 4  | Project 4 Requirements and Guide | 
+
+
+<!-- | 1  | [Optional Trivia Game Track for Project 1](/unit-projects/unit-one-alt-project-requirements/) |
 | 2  | [Project 2 Requirements and Guide](/unit-projects/unit-two-project-requirements/) |
 | 3  | [Project 3 Requirements and Guide](/unit-projects/unit-three-project-requirements/) |
-| 4  | [Project 4 Requirements and Guide](/unit-projects/unit-four-project-requirements/) |
-<br>
-<br>
+| 4  | [Project 4 Requirements and Guide](/unit-projects/unit-four-project-requirements/) | -->
 
 
 ### [<u>Unit One: Frontend Fundamentals</u>](/frontend-fundamentals)
@@ -67,12 +56,11 @@ All material is subject to change at Instructors discretion.
 | 6    | Project Week                          |
 
 
-<br>
-<br>
 
-### [<u>Unit Two: Full Stack Development</u>](/full-stack-development)
+### <u>Unit Two: Full Stack Development</u>
+<!-- ### [<u>Unit Two: Full Stack Development</u>](/full-stack-development) -->
 
-[Intro to Express 2022 Video Playlist](https://youtube.com/playlist?list=PLY6oTPmKnKbauWKV8OwrwF786A1aexGKJ)
+<!-- [Intro to Express 2022 Video Playlist](https://youtube.com/playlist?list=PLY6oTPmKnKbauWKV8OwrwF786A1aexGKJ) -->
 
 | Week | Topics       |
 | ---- | ------------ |
@@ -84,12 +72,11 @@ All material is subject to change at Instructors discretion.
 | 12   | Project Week, Intro to React |
 
 
-<br>
-<br>
 
-### [<u>Unit Three: React Fundamentals</u>](/react-fundamentals)
+### <u>Unit Three: React Fundamentals</u>
+<!-- ### [<u>Unit Three: React Fundamentals</u>](/react-fundamentals)
 
-[Intro to React 101 Videos](https://youtube.com/playlist?list=PLY6oTPmKnKbZvTaGTs4HQFzuTBR1l1lBT)
+[Intro to React 101 Videos](https://youtube.com/playlist?list=PLY6oTPmKnKbZvTaGTs4HQFzuTBR1l1lBT) -->
 
 | Week | Topics       |
 | ---- | ------------ |
@@ -101,15 +88,13 @@ All material is subject to change at Instructors discretion.
 | 17   | Group Git, React Recoil    |
 | 18   | Project Week |
 
-<br>
-<br>
-For the future...
 
 
 
-### [Unit Four: Second Language](/second-language)
+### Unit Four: Second Language
+<!-- ### [Unit Four: Second Language](/second-language)
 [Intro to Python Videos](https://youtube.com/playlist?list=PLY6oTPmKnKbaTvgXqNCRXcKnqbO5j2oQn)
-[Intro to Django Videos](https://youtube.com/playlist?list=PLY6oTPmKnKbbwiftMy2RfwC8MpFbhngXT)
+[Intro to Django Videos](https://youtube.com/playlist?list=PLY6oTPmKnKbbwiftMy2RfwC8MpFbhngXT) -->
 
 | Week | Topics       |
 | ---- | ------------ |
@@ -120,7 +105,7 @@ For the future...
 | 23   | Project Week |
 
 <br>
-<br>
+
 
 <!-- ### [Unit Five: Capstone Essentials](/capstone-essentials)
 

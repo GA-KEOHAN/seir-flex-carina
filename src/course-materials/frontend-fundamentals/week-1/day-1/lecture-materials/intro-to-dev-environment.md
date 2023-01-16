@@ -90,7 +90,7 @@ Students will be able to:
 
 - `ls` does not display hidden files by default, adding the `-a` option will show them
 
-- `tree` is a nice utility for displaying a graphical representation of a directory and its nested directories.<br/>Install it by typing `brew install tree`
+<!-- - `tree` is a nice utility for displaying a graphical representation of a directory and its nested directories.<br/>Install it by typing `brew install tree` -->
 
 <br>
 <br>
@@ -173,7 +173,7 @@ Students will be able to:
 
 - Moving directories is just as easy using the same `mv` command
 
-- Try it out:
+:alarm_clock: Try it out:
 	1. Create a `~/shorts` directory
 	2. Move the newly created `shorts` directory into the `drawers` directory
 

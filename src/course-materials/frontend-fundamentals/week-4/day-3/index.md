@@ -16,4 +16,4 @@ topics: "Array Callback Methods"
 
 #### Lesson Recordings
 
-All lesson recordings can be found [here](https://git.generalassemb.ly/SEIR-Jedi/orientation/wiki/Class-Schedule) on the class wiki.
+All lesson recordings can be found in the recordings slack channel
