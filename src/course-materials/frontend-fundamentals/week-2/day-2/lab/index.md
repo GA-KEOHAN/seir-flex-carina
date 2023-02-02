@@ -17,7 +17,6 @@ type: "lab"
 
 ## Instructions
 
-1.  Fork and clone this repository.
 1.  Fulfill the listed requirements.
 
 ## Requirements
