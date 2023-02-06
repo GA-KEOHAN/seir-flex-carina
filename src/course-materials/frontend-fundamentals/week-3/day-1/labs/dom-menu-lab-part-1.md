@@ -50,7 +50,7 @@ This is the first of a two-part lab that builds a menu bar with a slide-down sub
 
 ## Setup  
 
-1. Create a static HTML5 [code sandbox](https://codesandbox.io/) called `dom-menu-lab`:
+1. Create a folder called `dom-menu-lab`:
    
 - Inside of `dom-menu-lab` create the following folder/file structure:
 
@@ -296,4 +296,3 @@ Iterate over the entire `menuLinks` array and for each "link" object:
 #### Congrats!
 
 <img src="https://i.imgur.com/pWu6yHO.png">
-

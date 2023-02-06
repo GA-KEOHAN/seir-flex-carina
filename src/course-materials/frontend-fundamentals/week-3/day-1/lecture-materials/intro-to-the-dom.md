@@ -55,7 +55,7 @@ type: "lecture"
 
 ### Lesson Setup  
 
-- Create a static HTML5 [code sandbox](https://codesandbox.io/) called `intro-to-dom`
+- Create a folder called `intro-to-dom`
 - Inside of `intro-to-dom` create the following folder/file structure:
 
 ```shell
