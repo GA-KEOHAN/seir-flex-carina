@@ -1,112 +1,154 @@
+# PROJECT 1! **Browser-based Game**
+
+## **Overview**
+
+Your first SEI project will start out with something fun - **a game!**
+
+Thanks to the amount of logic there is in a game, there's no better app than a game to teach you how to **think like a programmer**!
+
+Everyone will get a chance to **be creative**, and work through some really **tough programming challenges**. You got your feet wet with Tic-Tac-Toe, and we built a game or two during class - now it's time to step it up a notch.
+
+**You will be working individually on this project**. However, your instructors and instructor assistants will be guiding you along with up to ten 15-minute one-on-one sessions. Be sure to use them wisely :).
+
+As a reminder, GA has a zero plagiarism policy - your project's code **must be substantially yours**. **Do not copy code from other similar projects or other sources**. However, using lines of code from StackOverflow to accomplish general techniques/algorithms is okay - an example would be using StackOverflow as a source for code that replaces a character at a certain position in a string.
+
 ---
-track: "Frontend-Fundamentals"
-title: "Project One"
-type: "Project Prompt"
-topics: "Unit Projects"
+
+## **Planning & Presentation Requirements**
+
+### **Planning - Due on February 25th**
+
+- You will share:
+    
+    ☐ Your choice of game.
+    
+    ☐ A wireframe of your "main" game screen. (Many students find [https://www.figma.com/](https://www.figma.com/) helpful)
+    
+    ☐ Pseudocode for the overall gameplay.
+    
+
+### **Presentation - March 11th:**
+
+You will have a maximum of 10 minutes to present your project following these guidelines:
+
+1. **Introduce the Project:**
+    
+    ☐ Intro your game by paraphrasing the README.
+    
+2. **Demonstrate the Project:**
+    
+    ☐ Launch the game by clicking the link in the README.
+    
+    ☐ Play the game! If necessary, manipulate the values of variables in the console to ensure a quick win or loss.
+    
+3. **Show/discuss your code:**
+    
+    ☐ Briefly show the HTML & CSS.
+    
+    ☐ Show the JavaScript and discuss your favorite function.
+    
+4. **Share the experience:**
+    
+    ☐ What was your biggest challenge?
+    
+    ☐ What are your key learnings/takeaways?
+    
+5. **Q & A + Feedback**
+
 ---
 
-# Project One: Your First Web Application
+## **Technical Requirements**
 
-## Attendance
+### **Your App Must:**
 
-For project week, the classroom will break into squads, so students can work on their projects independently and check in via slack or a 1:1 zoom with their squad leader as needed/scheduled.
+☐ **Render a game in the browser**.
 
+☐ **Include win and/or loss logic and render win/loss messages in HTML.** Popup alerts using the `alert()` method are okay during development, but not production.
 
-There are typically no classes taught during project week with the exception of an occasional concept review or bonus workshop. 
+☐ Include separate HTML, CSS & JavaScript files.
 
+☐ Have **properly indented HTML, CSS & JavaScript**. In addition, vertical whitespace needs to be consistent.
 
-Additionally, we still take normal attendance during project period, so you are still expected to be available for an evening (mid-week)  or morning & after-lunch (sat) check-in from your squad leader. 
+☐ No remaining **dead and/or commented-out code** (code that will never be called).
 
+☐ Have functions and variables that are named sensibly. Remember, functions are typically named as verbs, and variables (data) are named as nouns.
 
-## Project Details
+☐ **Be coded in a consistent** manner. For example, choose between your preference for function declarations vs. function expressions.
 
-### &#x1F534; Mandatory To Pass:
-#### MVP - Minimum Viable Product
+☐ **Deploy your game online** using GitHub Pages so that the rest of the world can play your game!
 
-#### Your application must meet these requirements:
+---
 
-  1. Built with HTML, CSS, JavaScript and *jQuery* 
-  2. Hosted on github pages/netlify.com/vercel.com/render.com<br>
-  3. Frequent Commits to github (at least one per day)<br>
-  4. A `README.md` file with explanations of the technologies used, the approach taken, a link to your live site, installation instructions, unsolved problems, etc.
-  5. All relevant info added to the [Unit Project Worksheet](https://docs.google.com/spreadsheets/d/1cjpfTbWYT-4Km3xN0e12wL6Esn-p9rWUiXzHTyo3Y0s/edit#gid=1747412676)
+## **Necessary Deliverables**
 
-  [START HERE: THIS VIDEO WILL GUIDE YOU ON SETUP AND DEPLOYMENT](https://youtu.be/gKoNZUhwmEM)
+☐ The code for **a working game that meets or exceeds the above technical requirements, built by you, and hosted on GitHub Pages** (covered next week).
 
-#### Here are some "bonus features" but not required:
-  1. Have one or more complex user interface modules such as a [modal](https://www.youtube.com/watch?v=R9aBDO5OsRw), carousel, drag and drop, a sticky nav, tooltips, etc
-  1. Look into <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage" target="_blank">localstorage</a> so you can save data to the user's browser 
-  1. Use AJAX to make a request to an external data source like OMDBapi and insert some of the data retrieved into the DOM. Read [MORE ON APIS](/unit-projects/unit-one-project-requirements/more-on-apis)
+- **A `README.md` file** with these sections:
+    
+    ☐ **<Your game's title>**: A description of your game. Background info of the game is a nice touch.
+    
+    ☐ **Screenshot(s):** Images of your actual game.
+    
+    ☐ **Technologies Used**: List of the technologies used, e.g., JavaScript, HTML, CSS...
+    
+    ☐ **Getting Started**: In this section include the link to your deployed game and any instructions you deem important.
+    
+    ☐ **Next Steps**: Planned future enhancements (icebox items).
+    
+    > Note: Don't underestimate the value of a well-crafted README.md. The README.md introduces your project to prospective employers and forms their first impression of your work!
+    > 
 
+☐ **Frequent commits dating back to the very beginning of the project**. Commit messages should be in the present tense, e.g., "Style game board" instead of "Styled game board". **Be sure to create the repo on your personal GitHub account and ensure that it is "public".**
 
+---
 
-## Make A New Repo
+## **Choose From the Following Games**
 
-You will be using GitHub, **not** GitHub Enterprise!
+> Note: Games are listed in approximate order of increasing difficulty.
+> 
+1. **Trivia game**
+2. **Memory Matcher** 
+3. **War** (the card game)
+4. **Blackjack**
+5. **Slot Machine**
+6. **Simon** (warning: will require asynchronous timing)
+7. **2048**
+8. **Minesweeper**
+9. **Checkers** (no AI required - player vs. player is fine)
+10. **Solitaire**
+11. **Battleship** (would require a little AI to implement a computer opponent)
 
-**Do not** begin your project within the class repo.
+**If you have a game, not on the list that you'd like to code, please be sure to get approval from your instructor!**
 
-**Do not** clone your project into the class repo.
+> *IMPORTANT: Because it's important to demonstrate your ability to perform DOM manipulation using JavaScript, all games should be DOM-based, **not canvas-based**.*
+> 
 
-1. After your project has been approved, [make a new github repo for your project](https://help.github.com/articles/create-a-repo/). You will be deploying this project onto github pages, so you **must** name your repo `yourgithubusername.github.io` (for example, if my github username was octocat I would do: octocat.github.io)
+---
 
-![screenshot](https://i.imgur.com/bzBJdZ5.png)
+## **Suggestions**
 
-From there, follow the instructions outlined by github themselves on [github.io](https://pages.github.com/)
+- **The BEST advice is to follow the guidelines and principles in the** [Guide to Building a Browser App](https://gist.github.com/jim-clark/6f1919291f6007b2c0b2c93d925d6bac). The guide will give you a step-by-step process to get you started and its MVC design pattern will result in clearer, more concise code that can scale functionality more easily.
+- **Theme your game** to give it a more personal touch and make it more unique!
+- **Use your Development Tools** (`console.log`, DevTools' debugger, `alert` statements) to debug and solve issues.
+- Stick with the **KISS (Keep It Simple Stupid)** principle. Minimum Viable Product (MVP) functionality that looks great is better than extra functionality added to a game without polish.
+- If you choose a card-based game, there is a CSS library in the *resources* directory of the class repo that will help you render **beautiful** cards of any size, front and back.
+- **Commit early, commit often.** Don’t be afraid to break something because you can always go back in time to a previous version.
+- **Consult documentation and other resources** to better understand methods, etc.
+- Write **DRY (Don't Repeat Yourself)** code. Check for repeating code and refactor into functions that accept arguments.
 
+---
 
-**Extra: want your own domain name?**
+## **Project Feedback + Evaluation**
 
-You can also host your github pages with your own domain name.<br>[Here is a walkthrough from namecheap, one web hosting service](https://www.namecheap.com/support/knowledgebase/article.aspx/9645/2208/how-do-i-link-my-domain-to-github-pages)
+- *Your instructors will be evaluating your project during your demonstration as well as reviewing the code in your repo.*
+- If your instructors determine that your project does not meet the above requirements (denoted using checkboxes), you will be given 3 calendar days to address the deficiencies identified. However, be aware that **there is only a single opportunity to resubmit a project during the course**. For example, if you have to resubmit Project 1, you will not have an opportunity to resubmit Projects 2, 3, or 4.
+- Immediately after your presentation, your instructor and/or outcomes may provide you with feedback that will benefit your project and perhaps the projects of other students as well.
+- If there is a specific section of code that you would like an instructor to provide additional feedback on, please ask!
 
+## General Evaluation Criteria
 
-## How to Submit Your Project
-You will present your project and show your code to classmates and instructors.
-
-## Where to go for help during project week
-1. Seek out help online
-2. Seek out help with your classmates
-3. Seek out help with our class Instructor Associate 
-
-## Suggested Ways to Get Started
-
-* **Wireframe** Make a drawing of what your app will look like in all of its stages (what does it look like as soon as you log on to the site? What does it look like once data is retrieved?).
-
-* **Break the project down into different components** (data, presentation, views, style, DOM manipulation) and brainstorm each component individually.
-
-* **Commit early, commit often.** Don’t be afraid to break something because you can always go back in time to a previous version.
-
-* **Consult documentation resources** (MDN, jQuery, etc.) at home to better understand what you’ll be getting into.
-
-### Think about...
-
-- **Creativity**  
-Did you add a personal spin or creative element into your project submission? Did you deliver something of value to the end user?
-
-- **Code Quality**  
-Did you follow code style guidance and best practices covered in class, such as spacing, indentation, modularity, and semantic naming? <br>Did you comment your code as your instructors have in class?
-
-- **Problem Solving**  
-Are you able to defend why you implemented your solution in a certain way? <br> Can you demonstrate that you thought through alternative implementations?
-
-## Example Project Functionality
-
-Below is a very simple project idea using OMDB and jQuery, notice how functionality was emphasized over style? <br>**(please note, your project should include more styling than this):** 
-
-![Example Project](https://i.imgur.com/L6hwHMR.gif)
-
-Consider framing your project around a problem. For example, if I were to create an app similar to the one above, maybe the problem is my friends and I always have weekly movie nights and we're starting to run out of movies to watch. So, I thought about creating an app where I can search for movies and see their summaries. Or just thought about creating an app to help schedule the movie nights with what movie we'll be watching, etc. 
-
-## Example README.md
-
-Here's an example readme for inspiration:
-![Example Readme](https://imgur.com/Xyu5ngf.png)
-
-## Useful Resources
-
-* **[MDN Javascript Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript)**
-* **[jQuery Docs](https://api.jquery.com)**
-* **[GitHub Pages](https://pages.github.com)**
-* **[Trello](trello.com)**
-
-<hr>  
+- **Code Quality:** Is the code consistently formatted? Are variable and function names semantic and sensible? Is the code easy to read and understand?
+- **Technical Requirements:** How does the project stack up to the requirements for this project? Is the developer making use of the material we've covered in a way that makes sense?
+- **Creativity & Interface:** Is the application easy to navigate? Does it work well in every major browser? Is it responsive? Does it incorporate modern UI Themes?
+- **Functionality:** Does the application work without errors or bugs? Does it present a complete app, where every feature is fully implemented in a way that makes sense?
+- **Presentation:** Is there adequate documentation? Is the repository well-organized and free of clutter?

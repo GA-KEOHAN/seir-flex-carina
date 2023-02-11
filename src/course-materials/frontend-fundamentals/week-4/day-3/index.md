@@ -12,7 +12,7 @@ topics: "Array Callback Methods"
 
 - **Bonus Morning Lesson** Specificity and other CSS tips
 - **Lecture:** [Array Callback Methods](/frontend-fundamentals/week-4/day-3/lecture)
-- **Lab/Homework:** [Array Callbacks Lab](/frontend-fundamentals/week-4/day-3/lab) **Deliverable**
+- **Lab/Homework:** [Array Callbacks Lab](/frontend-fundamentals/week-4/day-3/lab) **Non Deliverable**
 
 #### Lesson Recordings
 

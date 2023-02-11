@@ -11,6 +11,37 @@ topics: "Unit Projects"
 
 For your first project you will be creating a trivia game. The topic of the trivia can be whatever you like, you will be creating custom questions using a Headless CMS.
 
+### Squads
+
+**Joe**
+- Angelica Erazo
+- Britney	Cheeks
+- Cameron	Nalley
+- Chloe Rodriguez
+
+**Chris**
+- Chris Ferrell
+- Christy	Fury
+- David Diaz
+- Dylan Silverglate
+- Eduardo	arzola
+
+
+**August**
+- Garrett Conliffe
+- Jade	Ye
+- Juan Otavo
+- Kevin Brown
+- Laura Ostering
+
+**David**
+- Matt Lane
+- Megan Hargett
+- Samantha Karas
+- Ty Kirkland
+- Michel Wesner
+
+
 ### Minimum Viable Product
 
 - Create a question model with a Headless CMS (Either Contentful or Agility CMS) and create at least 20 questions
