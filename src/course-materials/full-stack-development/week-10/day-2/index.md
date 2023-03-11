@@ -1,5 +1,5 @@
 ---
-track: "Full-Stack Development"
+track: "Bonus and Project 2 Announcement"
 title: "Day 2"
 week: 10
 day: 2

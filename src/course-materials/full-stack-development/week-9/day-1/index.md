@@ -4,7 +4,7 @@ title: "Day 1"
 week: 9
 day: 1
 type: "homepage"
-topics: "Intro to Mongo"
+topics:  "Intro to MongoDB"
 ---
 
 # Mongo Intro

@@ -4,7 +4,7 @@ title: "Day 1"
 week: 10
 day: 1
 type: "homepage"
-topics: "Full Stack with Express and Mongo"
+topics: "Deployment"
 ---
 
 # CRUD Labs

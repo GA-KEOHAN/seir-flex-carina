@@ -4,7 +4,7 @@ title: "Day 2"
 week: 9
 day: 2
 type: "homepage"
-topics: "Intro to MongoDB"
+topics: "Full Stack with Express and Mongo"
 ---
 
 #### Intro to Mongoose
