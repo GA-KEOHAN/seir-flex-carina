@@ -57,10 +57,10 @@ All material is subject to change at Instructors discretion.
 
 
 
-### <u>Unit Two: Full Stack Development</u>
-<!-- ### [<u>Unit Two: Full Stack Development</u>](/full-stack-development) -->
+<!-- ### <u>Unit Two: Full Stack Development</u> -->
+### [<u>Unit Two: Full Stack Development</u>](/full-stack-development)
 
-<!-- [Intro to Express 2022 Video Playlist](https://youtube.com/playlist?list=PLY6oTPmKnKbauWKV8OwrwF786A1aexGKJ) -->
+[Intro to Express 2022 Video Playlist](https://youtube.com/playlist?list=PLY6oTPmKnKbauWKV8OwrwF786A1aexGKJ)
 
 | Week | Topics       |
 | ---- | ------------ |
