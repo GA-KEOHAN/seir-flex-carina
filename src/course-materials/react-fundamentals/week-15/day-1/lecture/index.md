@@ -1,230 +1,388 @@
-# Create an API in Express
+## Express React Build
 
-So now that you've spent time learning how to build a standalone front-end application with React, the next step is to learn how to use Express to build a JSON API.
+In this build we will
 
-## Why Build An API?
+- Build an Express API
+- Use Mongo/Mongoose with 1 model
+- Deploy the Api with Heroku
+- Build a Full Crud Frontend with React
+- Deploy with Netlify
 
-The beauty of a JSON API is its reusability. Instead of building an App with server-side rendered pages you render routes that deliver and receive JSON. These routes can work with:
+## Setup for Express Build
 
-- front-end web applications
-- mobile applications
-- desktop application
-- internet enabled devices
+- Create a folder called express-react
+- Inside this folder create another folder called backend
+- Generate a React app called frontend `npx create-react-app frontend`
 
-Even better, these APIs can be used by other developers to create applications around your application (Think of all the apps built around facebook, twitter, etc.).
+Your folder structure should look like this...
 
-## Getting Started
+```
+/express-react
+ -> /backend
+ -> /frontend
+```
 
-- Create a new empty folder (not inside another repo) called `turtles_api`
+- cd into `backend` folder
 
-- create a filed called server.js `touch server.js`
+## Setting up the Express app
 
-- Open your terminal in this folder and create a new node project `npm init -y`
-
-- Install express & nodemon `npm install express nodemon` 
-
-- update your scripts in package.json
+- create a new node project `npm init -y`
+- install dependencies `npm install dotenv mongoose express cors morgan`
+- install dev dependencies `npm install --save-dev nodemon`
+- setup npm scripts
 
 ```json
 "scripts": {
-  "start": "node server.js",
-  "dev": "nodemon server.js"
+    "start": "node server.js",
+    "dev": "nodemon server.js"
 }
 ```
 
-## server.js just getting a server running
+- make files `touch .env .gitignore server.js`
 
-Let's first just sketch out the basics of our server.js so that way a server can run.
+- put the following .gitignore
+
+```
+/node_modules
+.env
+```
+
+- put the following in .env (make sure to use YOUR mongodb.com uri)
+
+```
+MONGODB_URL=mongodb+src://...
+PORT=4000
+```
+
+## Starting Server.js
+
+Let's build out the minimum to get server.js up and running
 
 ```js
-
-/////////////////////////
+///////////////////////////////
 // DEPENDENCIES
-/////////////////////////
-const express = require("express")
+////////////////////////////////
+// get .env variables
+require("dotenv").config();
+// pull PORT from .env, give default value of 3000
+const { PORT = 3000 } = process.env;
+// import express
+const express = require("express");
+// create application object
+const app = express();
 
-
-/////////////////////////
-// The Application Object
-/////////////////////////
-const app = express()
-
-
-/////////////////////////
-// Routes
-/////////////////////////
-
-// home route that says "hello world" to test server is working
+///////////////////////////////
+// ROUTES
+////////////////////////////////
+// create a test route
 app.get("/", (req, res) => {
-    //res.json let's us send a response as JSON data
-    res.json({
-        response: "Hello World"
-    })
-})
+  res.send("hello world");
+});
 
-/////////////////////////
-// Listener
-/////////////////////////
-// We chose a non 3000 port because react dev server uses 3000 the highest possible port is 65535
-// Why? cause it's the largest 16-bit integer, fun fact!
-// But because we are "elite" coders we will use 1337
-app.listen(1337, () => console.log("Listening on port 1337"))
-
+///////////////////////////////
+// LISTENER
+////////////////////////////////
+app.listen(PORT, () => console.log(`listening on PORT ${PORT}`));
 ```
 
-- Go to localhost:1337 and see if you get a response. If so, you've successfully created an API!
+- run the server `npm run dev` and make sure you see "Hello World" when you go to `localhost:4000`
 
-## Let's talk Turtles...
+## Adding a Database Connection
 
-Now creating an API that sends "Hello World" as JSON isn't the most valuable thing in the world but it is an API. Let's build something more interesting. An API of famous turtles.
-
-- Will be able to Create, Read, Update and Delete a turtle
-- We will use a static array, so if the server restarts so will the data, keep in mind
-
-### The Data
-
-Let's add our array with starter data to our code below the Application Object
-
-server.js
-```js
-/////////////////////////
-// The Data
-/////////////////////////
-const turtles = [
-    {name: "Leonardo", role: "ninja"},
-    {name: "Michaelangelo", role: "ninja"},
-    {name: "Donatello", role: "ninja"},
-    {name: "Raphael", role: "ninja"},
-]
-```
-
-## Index Route
-
-Let's add an index route that will return the list of turtles as JSON.
+Let's update our server.js to include a database connection
 
 ```js
+///////////////////////////////
+// DEPENDENCIES
+////////////////////////////////
+// get .env variables
+require("dotenv").config();
+// pull PORT from .env, give default value of 3000
+// pull MONGODB_URL from .env
+const { PORT = 3000, MONGODB_URL } = process.env;
+// import express
+const express = require("express");
+// create application object
+const app = express();
+// import mongoose
+const mongoose = require("mongoose");
 
-/////////////////////////
-// Routes
-/////////////////////////
+///////////////////////////////
+// DATABASE CONNECTION
+////////////////////////////////
+// Establish Connection
+mongoose.connect(MONGODB_URL, {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+});
+// Connection Events
+mongoose.connection
+  .on("open", () => console.log("Your are connected to mongoose"))
+  .on("close", () => console.log("Your are disconnected from mongoose"))
+  .on("error", (error) => console.log(error));
 
-// home route that says "hello world" to test server is working
+///////////////////////////////
+// ROUTES
+////////////////////////////////
+// create a test route
 app.get("/", (req, res) => {
-    //res.json let's us send a response as JSON data
-    res.json({
-        response: "Hello World"
-    })
-})
+  res.send("hello world");
+});
 
-// Turtles Index Route (Send All Turtles)
-app.get("/turtles", (req, res) => {
-    // send the turtles array as JSON
-    res.json(turtles)
-})
-
+///////////////////////////////
+// LISTENER
+////////////////////////////////
+app.listen(PORT, () => console.log(`listening on PORT ${PORT}`));
 ```
 
-- Go to localhost:1337/turtles and test route
+- Make sure you see the Mongoose Connection message when the server restarts
 
-## Show Route
+## Adding the People Model
 
-Let's create a route where we can fetch an individual turtle. This often won't be needed in our React app since the full list of data is often stored in State and we can pull individual items from there, but still nice to have in case.
+Let's add a People model to server.js along with an index and create route to see and create our people. Make sure to add cors and express.json middleware!
 
 ```js
-// Turtles Show Route (Send One Turtle)
-app.get("/turtles/:index", (req, res) => {
-    // send turtle as json
-    res.json(turtles[req.params.index])
-})
+///////////////////////////////
+// DEPENDENCIES
+////////////////////////////////
+// get .env variables
+require("dotenv").config();
+// pull PORT from .env, give default value of 3000
+// pull MONGODB_URL from .env
+const { PORT = 3000, MONGODB_URL } = process.env;
+// import express
+const express = require("express");
+// create application object
+const app = express();
+// import mongoose
+const mongoose = require("mongoose");
+// import middlware
+const cors = require("cors");
+const morgan = require("morgan");
+
+///////////////////////////////
+// DATABASE CONNECTION
+////////////////////////////////
+// Establish Connection
+mongoose.connect(MONGODB_URL, {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+});
+// Connection Events
+mongoose.connection
+  .on("open", () => console.log("Your are connected to mongoose"))
+  .on("close", () => console.log("Your are disconnected from mongoose"))
+  .on("error", (error) => console.log(error));
+
+///////////////////////////////
+// MODELS
+////////////////////////////////
+const PeopleSchema = new mongoose.Schema({
+  name: String,
+  image: String,
+  title: String,
+});
+
+const People = mongoose.model("People", PeopleSchema);
+
+///////////////////////////////
+// MiddleWare
+////////////////////////////////
+app.use(cors()); // to prevent cors errors, open access to all origins
+app.use(morgan("dev")); // logging
+app.use(express.json()); // parse json bodies
+
+///////////////////////////////
+// ROUTES
+////////////////////////////////
+// create a test route
+app.get("/", (req, res) => {
+  res.send("hello world");
+});
+
+// PEOPLE INDEX ROUTE
+app.get("/people", async (req, res) => {
+  try {
+    // send all people
+    res.json(await People.find({}));
+  } catch (error) {
+    //send error
+    res.status(400).json(error);
+  }
+});
+
+// PEOPLE CREATE ROUTE
+app.post("/people", async (req, res) => {
+  try {
+    // send all people
+    res.json(await People.create(req.body));
+  } catch (error) {
+    //send error
+    res.status(400).json(error);
+  }
+});
+
+///////////////////////////////
+// LISTENER
+////////////////////////////////
+app.listen(PORT, () => console.log(`listening on PORT ${PORT}`));
 ```
 
-- head over to `localhost:1337/turtles/1` and `/2`, `/3`, `/4` and make sure you get the expected responses
+- create 3 people using postman to make post requests to /people
 
-### Create Route
+- test the index route with a get request to /people
 
-Now to create a post route in which we can send a json body and create a new turtle. To receive a JSON body we will need middleware to parse it, this will be express.json(). This is kind of like how we used express.urlencoded to parse data from form submission when we server rendered the pages.
+## Update and Delete
+
+Let's add an Update and Delete API Route to server.js
 
 ```js
-/////////////////////////
-// The Application Object
-/////////////////////////
-const app = express()
+///////////////////////////////
+// DEPENDENCIES
+////////////////////////////////
+// get .env variables
+require("dotenv").config();
+// pull PORT from .env, give default value of 3000
+// pull MONGODB_URL from .env
+const { PORT = 3000, MONGODB_URL } = process.env;
+// import express
+const express = require("express");
+// create application object
+const app = express();
+// import mongoose
+const mongoose = require("mongoose");
+// import middlware
+const cors = require("cors");
+const morgan = require("morgan");
 
-/////////////////////////
-// MIDDLEWARE
-/////////////////////////
+///////////////////////////////
+// DATABASE CONNECTION
+////////////////////////////////
+// Establish Connection
+mongoose.connect(MONGODB_URL, {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+});
+// Connection Events
+mongoose.connection
+  .on("open", () => console.log("Your are connected to mongoose"))
+  .on("close", () => console.log("Your are disconnected from mongoose"))
+  .on("error", (error) => console.log(error));
 
-app.use(express.json())
+///////////////////////////////
+// MODELS
+////////////////////////////////
+const PeopleSchema = new mongoose.Schema({
+  name: String,
+  image: String,
+  title: String,
+});
+
+const People = mongoose.model("People", PeopleSchema);
+
+///////////////////////////////
+// MiddleWare
+////////////////////////////////
+app.use(cors()); // to prevent cors errors, open access to all origins
+app.use(morgan("dev")); // logging
+app.use(express.json()); // parse json bodies
+
+///////////////////////////////
+// ROUTES
+////////////////////////////////
+// create a test route
+app.get("/", (req, res) => {
+  res.send("hello world");
+});
+
+// PEOPLE INDEX ROUTE
+app.get("/people", async (req, res) => {
+  try {
+    // send all people
+    res.json(await People.find({}));
+  } catch (error) {
+    //send error
+    res.status(400).json(error);
+  }
+});
+
+// PEOPLE CREATE ROUTE
+app.post("/people", async (req, res) => {
+  try {
+    // send all people
+    res.json(await People.create(req.body));
+  } catch (error) {
+    //send error
+    res.status(400).json(error);
+  }
+});
+
+// PEOPLE CREATE ROUTE
+app.put("/people/:id", async (req, res) => {
+  try {
+    // send all people
+    res.json(
+      await People.findByIdAndUpdate(req.params.id, req.body, { new: true })
+    );
+  } catch (error) {
+    //send error
+    res.status(400).json(error);
+  }
+});
+
+// PEOPLE CREATE ROUTE
+app.delete("/people/:id", async (req, res) => {
+  try {
+    // send all people
+    res.json(await People.findByIdAndRemove(req.params.id));
+  } catch (error) {
+    //send error
+    res.status(400).json(error);
+  }
+});
+
+///////////////////////////////
+// LISTENER
+////////////////////////////////
+app.listen(PORT, () => console.log(`listening on PORT ${PORT}`));
 ```
 
-Now we can add the post route!
+## Deploy
 
-```js
-// Turtles Index Route (Send All Turtles)
-app.post("/turtles", (req, res) => {
-    // push the request body into the array
-    turtles.push(req.body)
-    // send the turtles array as JSON
-    res.json(turtles)
-})
+- create a git repo in the `backend` folder `git init`
+
+- add all files to staging `git add .`
+
+- commit `git commit -m "message"`
+
+- create a new repo on github.com (make sure its empty and public)
+
+- add the remote to your local repo `git remote add origin URL` replate URL with your repos url
+
+- push up your code `git push origin branchName` replace branch name with your active branch, find that with `git branch`
+
+- go to heroku and create a new project
+
+- under deploy connect your repo, enable auto deploys, and trigger a manual deploy
+
+- under settings set your MONGO_URL config var
+
+- in postman test all your API endpoints
+
+## Lab Part 1 - Cheese App
+
+- create another folder called "Cheese App"
+
+- create a backend and frontend folder like you did for today's lesson
+
+- create a cheese API with index, create, update and delete routes
+
+- the model should look like
+
+```
+name: String,
+countryOfOrigin: String,
+image: String
 ```
 
-### Testing the Post Route
-
-We can't test this route in the browser since a browser cannot make post requests from putting a url in the url bar. Luckily, we have postman!
-
-- Open postman
-
-- Open a new tab
-
-- set the method to `post`
-
-- set the url to `http://localhost:1337/turtles`
-
-- choose `raw` for body and select `json` for your datatype and send the following
-
-```json
-{
-    "name": "Filbert",
-    "role": "Rocco's Friend"
-}
-
-```
-
-- Submit the request and confirm whether you see Filbert with the other turtles!
-
-## The Update Route
-
-Let's make another route to update a turtle.
-
-```js
-// Turtles Update Route
-app.put("/turtles/:index", (req, res) => {
-    // replace the turtle at the specified index with the request body
-    turtles[req.params.index] = req.body
-    // send the turtles array as JSON
-    res.json(turtles)
-})
-```
-
-- make a put request to localhost:1337/turtles/0 make sure to pass Filbert as JSON, Filbert should end up replacing Leonardo.
-
-## The Delete Route
-
-A route to delete a turtle, since we're dealing with a simple array we can use the splice method to remove the desired turtle.
-
-```js
-// Turtles delete Route
-app.delete("/turtles/:index", (req, res) => {
-    // remove the turtle at the specifed index
-    turtles.splice(req.params.index, 1)
-    // send the turtles array as JSON
-    res.json(turtles)
-})
-```
-
-- send a delete request to localhost:1337/turtles/1 and Michaelangelo should dissapear
-
-## Conclusion
-
-When express is only managing the Controllers and Models part of MVC, life gets a lot easier in the backend. Although, the tradeoff managing the state in our front-end get more complicated, no perfect solution.
+- Test the API, deploy the API, test the deployed API

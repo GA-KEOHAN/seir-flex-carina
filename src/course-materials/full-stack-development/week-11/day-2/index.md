@@ -4,9 +4,8 @@ title: "Day 2"
 week: 11
 day: 2
 type: "homepage"
-topics: "Deployment"
+topics: "Project 2"
 ---
-# Deployment
 
-- [Deployment on Render.com](/full-stack-development/week-10/day-1/lecture/deployment)
-- [Deployment on Render.com](/full-stack-development/week-10/day-1/lecture/deployment)
+## Project 2
+- [Project 2 Details](/unit-projects/unit-two-project-requirements/)

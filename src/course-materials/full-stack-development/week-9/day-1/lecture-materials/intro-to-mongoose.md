@@ -29,7 +29,7 @@ type: "lecture"
 
 ## Explain what is an ODM/Intro to Mongoose
 
-ODM stand for Object Document Mapper. It translates the documents in Mongo into upgraded JavaScript Objects that have more helpful methods and properties when used in conjunction with express.
+ODM stand for Object Document Model. It translates the documents in Mongo into upgraded JavaScript Objects that have more helpful methods and properties when used in conjunction with express.
 
 Rather than use the Mongo shell to create, read, update and delete documents, we'll use an npm package called `mongoose`. Mongoose will allow us to create schemas, do validations and make it easier to interact with Mongo inside an express app.
 
@@ -154,6 +154,8 @@ This should clear up the errors:
 mongoose.connect(DATABASE_URL, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
+	useFindAndModify: false,
+	useCreateIndex: true,
 });
 ```
 
@@ -195,6 +197,8 @@ const db = mongoose.connection;
 mongoose.connect(DATABASE_URL, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
+	useFindAndModify: false,
+	useCreateIndex: true,
 });
 
 // Database Connection Error/Success - optional but can be really helpful
@@ -323,10 +327,10 @@ Now, let's code out the real functionality for our create route
 ```js
 // Routes / Controllers
 // Create
-app.post('/tweets', (req, res) => {
-	Tweet.create(req.body, (error, createdTweet) => {
-		res.send(createdTweet);
-	});
+// Create
+app.post('/tweets', async (req, res) => {
+	const tweet = await Tweet.create(req.body)
+    res.send(tweet)
 });
 ```
 <br>
@@ -375,10 +379,9 @@ Remember INDUCES (Index, New, Delete, Update, Create, Edit, Show) to help organi
 
 ```js
 // Index
-app.get('/tweets', (req, res) => {
-	Tweet.find({}, (error, foundTweets) => {
-		res.send(foundTweets);
-	});
+app.get('/tweets', async (req, res) => {
+	const tweets = await Tweet.find({});
+	res.send(tweets);
 });
 ```
 
@@ -402,10 +405,9 @@ Remember INDUCES!
 
 ```js
 // Show
-app.get('/tweets/:id', (req, res) => {
-	Tweet.findById(req.params.id, (error, foundTweet) => {
-		res.send(foundTweet);
-	});
+app.get('/tweets/:id', async (req, res) => {
+	const tweet = await Tweet.findById(req.params.id);
+	res.send(tweet);
 });
 ```
 
@@ -437,10 +439,9 @@ Let's create a delete route. Remember INDUCES!
 
 ```js
 // Delete
-app.delete('/tweets/:id', (req, res) => {
-	Tweet.findByIdAndDelete(req.params.id, (error, deletedTweet) => {
-		res.send({ success: true });
-	});
+app.delete('/tweets/:id', async (req, res) => {
+	const tweet = await Tweet.findByIdAndDelete(req.params.id);
+	res.send({ success: true, tweet });
 });
 ```
 
@@ -475,15 +476,11 @@ If we want to have our updated document returned to us in the callback, we have 
 
 ```js
 // Update
-app.put('/tweets/:id', (req, res) => {
-	Tweet.findByIdAndUpdate(
-		req.params.id,
-		req.body,
-		{ new: true },
-		(error, updatedTweet) => {
-			res.send(updatedTweet);
-		}
-	);
+app.put('/tweets/:id', async (req, res) => {
+	const tweet = await Tweet.findByIdAndUpdate(req.params.id, req.body, {
+		new: true,
+	});
+	res.send(tweet);
 });
 ```
 

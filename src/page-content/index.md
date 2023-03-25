@@ -54,6 +54,7 @@ All material is subject to change at Instructors discretion.
 | 4    | Responsive Design & Callbacks         |
 | 5    | AJAX                                  |
 | 6    | Project Week                          |
+| 7    | Project Week                          |
 
 
 
@@ -64,29 +65,28 @@ All material is subject to change at Instructors discretion.
 
 | Week | Topics       |
 | ---- | ------------ |
-| 7    | Intro to Full-Stack Development, Express & Node        |
-| 8    | MVC and REST, New & Create, Update & Delete       |
-| 9    | Intro to MongoDB & Mongoose        |
-| 10   | MVC with Express and Mongo  |
-| 11   | Topic        |
-| 12   | Project Week, Intro to React |
+| 8    | Intro to Full-Stack Development, Express & Node        |
+| 9    | MVC and REST, New & Create, Update & Delete       |
+| 10    | Intro to MongoDB & Mongoose        |
+| 11   | MVC with Express and Mongo  |
+| 12   | Project Week |
+| 13   | Project Week |
 
 
 
-### <u>Unit Three: React Fundamentals</u>
-<!-- ### [<u>Unit Three: React Fundamentals</u>](/react-fundamentals)
+### [<u>Unit Three: React Fundamentals</u>](/react-fundamentals)
 
 [Intro to React 101 Videos](https://youtube.com/playlist?list=PLY6oTPmKnKbZvTaGTs4HQFzuTBR1l1lBT) -->
 
 | Week | Topics       |
 | ---- | ------------ |
-| 12   | Intro to React|
-| 13   | Props/State      |
-| 14   | Fetch, React Router     | 
-| 15   | React Forms, Making an API with express        |
-| 16   | Full Stack Build wit React/Express    |
-| 17   | Group Git, React Recoil    |
-| 18   | Project Week |
+| 14   | Intro to React, Props/State, Forms|
+| 15   | Fetch, React Router, JSON     |
+| 16   | Full Stack Build wit React/Express    | 
+| 17   | Group Git       |
+| 18   | Project Week   |
+| 19   | Project Week   |
+| 20   | Project Week |
 
 
 
@@ -98,11 +98,11 @@ All material is subject to change at Instructors discretion.
 
 | Week | Topics       |
 | ---- | ------------ |
-| 19   | Intro to Python      |
-| 20   | SQL, Intro Django     |
-| 21   | Full Stack Django App   |
-| 22   | Finish frontend, announce Project 4, Capstone, and Portfolio Requirements       |
-| 23   | Project Week |
+| 21   | Intro to Python      |
+| 22   | SQL, Intro Django     |
+| 23   | Full Stack Django App   |
+| 24   | Finish frontend, announce Project 4, Capstone, and Portfolio Requirements       |
+| 25   | Project Week |
 
 <br>
 

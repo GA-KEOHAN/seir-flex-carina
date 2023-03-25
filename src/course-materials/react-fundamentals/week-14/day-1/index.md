@@ -4,11 +4,12 @@ title: "Day 1"
 week: 14
 day: 1
 type: "homepage"
-topics: "Forms in React"
+topics: "UseEffect and Fetch"
 ---
 
-#### Forms in React
-- [**Lecture: React forms**](/react-fundamentals/week-13/day-3/lecture/) 
-- [**Lab: Korilla Receipts (NON-DELIVERABLE)**](/react-fundamentals/week-13/day-3/lab/)
+topics: "The useEffect Hook and Fetch"
+---
 
-
+#### Intro to React
+- [**Lecture: OMDBApp Build**](/react-fundamentals/week-14/day-1/lecture/index-movie) 
+- [**Lab: Giphy Lab - Deliverable**](/react-fundamentals/week-14/day-1/lab/index-giphy) 

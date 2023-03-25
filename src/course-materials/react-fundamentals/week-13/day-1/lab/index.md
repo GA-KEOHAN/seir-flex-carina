@@ -1,51 +1,61 @@
-<br>
-Title: Passing Props<br>
-Duration: 1hr+<br>
-Creator:  Joe Keohan<br>
+[![General Assembly Logo](https://camo.githubusercontent.com/1a91b05b8f4d44b5bbfb83abac2b0996d8e26c92/687474703a2f2f692e696d6775722e636f6d2f6b6538555354712e706e67)](https://generalassemb.ly/education/web-development-immersive)
 
----
+# React Static Components
 
-## Recreating WeatherForecast in React
+You've been showing off your portfolio and projects to your friends, family and
+classmates and they all say "It's fine. I like it!" But you want more insight.
 
-In this exercise, you will practice creating reusable React Components.
+So you decide to look into some analytical tools... but wow! They are expensive!
+You decide to make your own.
 
-Use the following [CodeSandbox Starter](https://codesandbox.io/s/adoring-goodall-mhive) code
+You visualize a dashboard with components for reviews, average rating, sentiment
+analysis and website visitors
 
-#### React Hierarchy 
+![Dashboard Wireframe](https://i.imgur.com/5mCo2tV.png)
 
-Here is the React Hierarchy you will be implementing:
+Dashboard Working Examples
+ - [Basic CSS](https://sgd6m.csb.app/)
+ - [Amazing CSS](https://e5x7h.codesandbox.io/)
+ - [Amazingly Pink](https://02dez.csb.app/)
+ - [Over The Top](https://o3o5k.csb.app/)
 
-<img src="https://i.imgur.com/7YlFsU7.png" width=500/><br>
+Try to recreate this wireframe with React. Be sure to create a few components
+(e.g. app, sidebar, reviews, average rating, sentiment analysis, website
+visitors).
 
-#### Getting Started
+## Instructions
 
-In `src/index.html` you will find five weather elements that generate the output you are seeing now.
+<!--1. Fork and clone this repository.
+1. Change into the new directory.-->
+1. Create a new CodeSandbox called React-Dashboard
+1. Fulfill the listed requirements.
+1. Submit the CodeSandbox link using the HW submission form
 
-Perform the following to complete the lab:
+## Requirements
 
-**Creating The Data**
-* Create a new file called `weatherData.js` that contain an array of five objects with the following properties: `img`,`conditions`,`time`.
-* Populate the objects based on the values from those same elements in the HTML
-* Import into `App.js`
-* Console.log the file to confirm that it has been imported
+- Build out the above wireframe using React Components. 
 
-**Creating The `WeatherForecast` Component**
-* Look over the HTML structure used to create the weather icons
-* Create a `WeatherForecast`  Component based on the HTML structure 
-* Make sure to set the Component up to accept props and update the JSX to work with those props
+## Get Started
 
-**Rendering The `WeatherForecast` Component**
-* Import the `WeatherForecast` Component into `App`
-* Loop over the weatherData array data and create a `WeatherForecast` Component for each element passed
-* In the loop pass the element the props it needs for `img`, `conditions` and `time`. 
-* App will then render those `WeatherForecast` Components
+- how would you get started? What do you need?
+- Think about how many components you need
+- What need to be passed through and what doesn't?
 
+### Set up
 
-**Bonus**
-- Try creating the following additional Components:
-  - WeatherIcon - contains only the img 
-  - WeatherData - contains both the `conditions` and `time`
+Create a new React CodeSandbox
 
-  If successful your React Hierarchy will now look like the following:
+### Bonus: Dark Theme!
 
-  <img src="https://i.imgur.com/ffkXBPi.png" width=600/>
+Keep going! Add more details, add some css
+
+![Cool Looking Dashboard](https://i.imgur.com/3kPnrAq.png)
+
+Dashboard example found here:
+https://medium.muz.li/30-handpicked-excellent-dashboards-347e2407a057
+
+## Plagiarism
+
+Take a moment to refamiliarize yourself with the
+[Plagiarism policy](https://git.generalassemb.ly/DC-WDI/Administrative/blob/master/plagiarism.md).
+Plagiarized work will not be accepted.

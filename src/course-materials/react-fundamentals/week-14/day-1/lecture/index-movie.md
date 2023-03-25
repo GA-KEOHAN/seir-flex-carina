@@ -42,29 +42,85 @@ Let's break it down...
 
 - enter command `npm start` to start the development server and see the default react website.
 
-#### npm scripts
+## Third Party APIs
 
-When using node, scripts can be defined to run certain files and commands very quickly. These are usually defined in the package.json file under "scripts". When using a template like create-react-app it is always a good habit to read the package.json to know what scripts are available (also generally documented in readme.md's of most templates).
+Many web sites have their own data which they make available to developers either for free or a small fee, while others charge quite a bit and are very expensive.
 
-\*For the exception of "start" which can be run as "npm start" all scripts are run by prefixing it with npm run... "npm run |ScriptName|"
+Below is a non-exhaustive list of some free API's you can use. Please note that some may require signing up for an API key (Giphy) and others require a bit more setup (Marvel API)
 
-- **npm start** This command will run the development server in react which we will use when developing
+#### No Key Required
+  1. Pokemon: http://pokeapi.co/
+  1. Card Deck: https://deckofcardsapi.com/
+  1. Google Books: https://developers.google.com/books/
+  1. City of Chicago: https://data.cityofchicago.org/
+  1. Beer: https://www.brewerydb.com/developers
+  1. Chuck Norris: http://www.icndb.com/
+  1. Rick and Morty: https://rickandmortyapi.com/documentation/#rest
+  1. Star Wars: https://swapi.co/
 
-- **npm run build** This is for deployment. The build command will run webpack to build out all your files into one outputed into a folder named "build".
 
-- **npm run test** This is to run a built-in testing feature, a discussion for another day.
+#### Key Required
+  1. Marvel: https://developer.marvel.com/
+  1. Weather: https://openweathermap.org/api
+  1. Giphy: https://developers.giphy.com/ 
+  1. News: https://newsapi.org/
 
-- **npm run eject** Facebook hides all the tools and configuration files for this template to keep things simple, but if you want to look at the guts to better understand what's going on or tweak and customize you can run this command to reveal the inner workings of the CRA template.
 
-## The Source Folder
+<!-- <hr>
 
-All your code will generally exist in the src folder. Below are some of the main files to be aware of...
+#### <g-emoji class="g-emoji" alias="alarm_clock" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/23f0.png">⏰</g-emoji> Activity - 5min
 
-- index.js: This is the file that renders your app component to your index.html
+- Let's take a moment and examine a few of the [public API's](https://github.com/toddmotto/public-apis) available. 
+- Pick a topic of interest and examine the API's for that category. 
 
-- index.css: This css file is imported info index.js, so think of it as your global css file
+Let's capture some of the APIs you've discovered and their category.
 
-- App.js: This is your app component it represents, well... your application
+#### Catergory Name
+- API url
+
+#### Catergory Name
+- API url
+
+
+<hr> -->
+
+## API
+
+As we've seen so far API's provide access to the data via a url. Let's take a look at the [RandomUser API](https://randomuser.me/) specifically. 
+
+```js
+https://randomuser.me/api
+```
+
+This returns a single random user. 
+
+<img src="https://i.imgur.com/nk78W6A.png"  />
+
+**Query String**
+
+This API has also been constructed to allow us to request multiple users in one call. This is done by using a `query string`  that includes the search parameters. 
+
+The `query string` is placed at the end of the url and starts with a `?` followed by a `key=value` pair. 
+
+Here are a few examples of API's using a `query string` to include additional parameters in the request:
+
+**Random User**
+
+Here we request 5 users
+```js
+https://randomuser.me/api/?results=5
+```
+
+We can also add multiple search queries using the `&` symbol along with additional query values. 
+```js
+https://randomuser.me/api/?results=5&gender=female
+```
+
+**Swapi (Star Wars)**
+
+```js
+https://swapi.dev/api/people/?search=r2
+```
 
 ## Movie Display Component
 

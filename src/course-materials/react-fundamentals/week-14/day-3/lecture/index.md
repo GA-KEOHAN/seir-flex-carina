@@ -4,7 +4,7 @@ In this build we will
 
 - Build an Express API
 - Use Mongo/Mongoose with 1 model
-- Deploy the Api with Heroku
+- Deploy the Api with render
 - Build a Full Crud Frontend with React
 - Deploy with Netlify
 
@@ -361,7 +361,7 @@ app.listen(PORT, () => console.log(`listening on PORT ${PORT}`));
 
 - push up your code `git push origin branchName` replace branch name with your active branch, find that with `git branch`
 
-- go to heroku and create a new project
+- deploy the project with render
 
 - under deploy connect your repo, enable auto deploys, and trigger a manual deploy
 

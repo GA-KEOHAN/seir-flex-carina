@@ -45,6 +45,7 @@ export default({ data, location }) => {
           <h2 className={styles.dayTitle} key={node.fields.id}>{node.frontmatter.title}<small className={styles.smallText}> - {node.frontmatter.topics}</small></h2>
         </Link> 
       );
+      
       const weekTenLessons = allMarkdownRemark.edges.filter(({ node }) => 
       node.frontmatter.week === 10
       ).map(({ node }) =>

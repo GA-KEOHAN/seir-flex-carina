@@ -241,19 +241,6 @@ Another piece of advice:  If you choose to develop an app that has the concept o
 <br>
 
 
-#### Actual Recent Student Projects
-
-- [SEIR Ice Creams](https://seir-ice-creams.herokuapp.com/)
-- [Book Worms United](https://bookworms-united.herokuapp.com/)
-- [Mana Autisim](https://mana-autism-resource.herokuapp.com/)
-- [NIGHTOWL Coffee](https://nightowl-coffee.herokuapp.com)
-- [Cat Instagram](https://nyanstagram.herokuapp.com/)
-
-<br>
-<br>
-<br>
-
-
 
 
 ## Project Feedback + Evaluation

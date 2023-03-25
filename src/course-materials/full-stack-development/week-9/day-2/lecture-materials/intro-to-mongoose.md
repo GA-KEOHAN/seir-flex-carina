@@ -29,7 +29,7 @@ type: "lecture"
 
 ## Explain what is an ODM/Intro to Mongoose
 
-ODM stand for Object Document Model. It translates the documents in Mongo into upgraded JavaScript Objects that have more helpful methods and properties when used in conjunction with express.
+ODM stand for Object Document Mapper. It translates the documents in Mongo into upgraded JavaScript Objects that have more helpful methods and properties when used in conjunction with express.
 
 Rather than use the Mongo shell to create, read, update and delete documents, we'll use an npm package called `mongoose`. Mongoose will allow us to create schemas, do validations and make it easier to interact with Mongo inside an express app.
 
@@ -154,8 +154,6 @@ This should clear up the errors:
 mongoose.connect(DATABASE_URL, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
-	useFindAndModify: false,
-	useCreateIndex: true,
 });
 ```
 
@@ -197,8 +195,6 @@ const db = mongoose.connection;
 mongoose.connect(DATABASE_URL, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
-	useFindAndModify: false,
-	useCreateIndex: true,
 });
 
 // Database Connection Error/Success - optional but can be really helpful

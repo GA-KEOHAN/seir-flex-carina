@@ -10,9 +10,9 @@ type: "lecture"
 # Book List CRUD App with Mongoose - Seed
 
 
-<br>
-<br>
-<br>
+
+
+
 
 
 ## Lesson Objectives
@@ -21,9 +21,9 @@ type: "lecture"
 1. Move Seed Data to External File
 
 
-<br>
-<br>
-<br>
+
+
+
 
 
 ## Introduction
@@ -31,9 +31,9 @@ type: "lecture"
 A Seed Route is a route we can hit to automatically populate our databases with some dummy data. While you wouldn't want to have a seed route in production, they can be really handy in development.
 
 
-<br>
-<br>
-<br>
+
+
+
 
 
 ## Add a Basic Seed Route
@@ -88,9 +88,9 @@ As you can see from the code above, we're using mongoose's create method just li
 You may also notice we're using a `GET` route instead of a POST route. We're going to be hitting this route from our browser and the code above will handle the data entry, so a simple `GET` route will do.
 
 
-<br>
-<br>
-<br>
+
+
+
 
 
 ## STOP! Check your work.
@@ -100,9 +100,9 @@ In the browser, navigate to `http:localhost:3000/books/seed`
 It should redirect to you `/books` and we should now see all the books from our seed route on the page.
 
 
-<br>
-<br>
-<br>
+
+
+
 
 
 ## Gotcha!
@@ -160,9 +160,9 @@ app.get('/books/seed', (req, res) => {
 ```
 
 
-<br>
-<br>
-<br>
+
+
+
 
 
 ## STOP! Check your work.
@@ -172,9 +172,9 @@ Now, when you hit the seed route multiple times, you'll still only have one set 
 Just remember, if you choose to include delete functionality in your seed routes, any data you've entered manually through a form or through postman will be lost. Use the seed route with care, and comment it out or delete it before deploying your app, unless it's a personal project for which you want to be able to restore your chosen data.
 
 
-<br>
-<br>
-<br>
+
+
+
 
 
 ## Move Seed Data to a Separate file
@@ -216,9 +216,9 @@ module.exports = [{
 ```
 
 
-<br>
-<br>
-<br>
+
+
+
 
 
 As you can see in the code above, we're now exporting our seed data from this file, which means we can import it elsewhere!
@@ -242,9 +242,9 @@ app.get('/books/seed', (req, res) => {
 We could import our `bookSeed` data at the top of the file with our dependencies, but it may be easier to remember to delete it if you keep all the seed related stuff together. To each their own!
 
 
-<br>
-<br>
-<br>
+
+
+
 
 
 ## STOP! Check your work.

@@ -4,13 +4,11 @@ title: "Day 2"
 week: 14
 day: 2
 type: "homepage"
-topics: "UseEffect and Fetch"
----
-
-topics: "The useEffect Hook and Fetch"
+topics: "React Router"
 ---
 
 #### Intro to React
-- [**Lecture: OMDBApp Build**](/react-fundamentals/week-14/day-1/lecture/) 
-- [**Lab: Giphy Lab - non-deliverable**](/react-fundamentals/week-14/day-1/lab/) 
-
+- [**Lecture: Bitcoin Router Build (Using Router Version 6.4 with new Data Routers)**](/react-fundamentals/week-14/day-2/lecture/router64)
+- [**Lecture: Bitcoin Router Build (Using Router Version 6)**](/react-fundamentals/week-14/day-2/lecture/router)
+- [**Lecture: Bitcoin Router Build (Using Router Version 5)**](/react-fundamentals/week-14/day-2/lecture/)
+- [**Lab: Router Lab - deliverable**](/react-fundamentals/week-14/day-2/lab/)

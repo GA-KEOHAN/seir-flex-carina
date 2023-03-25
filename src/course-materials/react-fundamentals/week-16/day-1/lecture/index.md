@@ -1,230 +1,374 @@
-# Create an API in Express
+# React-Recoil and React-Request
 
-So now that you've spent time learning how to build a standalone front-end application with React, the next step is to learn how to use Express to build a JSON API.
+One of the best things about React is the huge developer community that exists creating an endless supply of libraries, component libraries and even full on frameworks to extend the use of React in web developmnet. In this lecture we'll target a few useful libraries that help solve some of Reacts greatest pain points.
 
-## Why Build An API?
+## What are React's Pain Points?
 
-The beauty of a JSON API is its reusability. Instead of building an App with server-side rendered pages you render routes that deliver and receive JSON. These routes can work with:
+Below you'll see a list of common pain points and libraries that aim to solve them.
 
-- front-end web applications
-- mobile applications
-- desktop application
-- internet enabled devices
+| Pain Point | Libraries |
+|------------|-----------|
+| State Management | Recoil, Mobx, Redux, XState, merced-react-hooks |
+| Making API Calls | react-query, react-request, merced-react-hooks |
+| Forms | Formik, merced-react-hooks |
+| Styling | Styled Components, Emotion, JSS |
 
-Even better, these APIs can be used by other developers to create applications around your application (Think of all the apps built around facebook, twitter, etc.).
+## Why React Recoil?
 
-## Getting Started
+Over the years Redux has been probably the most used State Management library for React, recently the creators of React, Facebook, released their own state management library which provides a much simpler and more "Reacty" library called Recoil. Since it's created by the makers of React it touts some very convinient and powerfel functionality.
 
-- Create a new empty folder (not inside another repo) called `turtles_api`
+## Why react-query
 
-- create a filed called server.js `touch server.js`
+React request doesn't just make the process of making API calls smooth, but it also abstracts away tedious issues like a caching and updating data, it has been growing quite popular since its release.
 
-- Open your terminal in this folder and create a new node project `npm init -y`
+## Let's Get Started
 
-- Install express & nodemon `npm install express nodemon` 
+- create a new react `npx create-react-app recoilquery`
 
-- update your scripts in package.json
+- install libraries `npm install recoil react-query`
 
-```json
-"scripts": {
-  "start": "node server.js",
-  "dev": "nodemon server.js"
-}
-```
+## Setting up the Providers
 
-## server.js just getting a server running
+Like many react libraries (like React Router) we setup the library by wrapping our App in a provider.
 
-Let's first just sketch out the basics of our server.js so that way a server can run.
+- The recoil provider will help deliver our state across our application
 
-```js
+- the react-query provider will help make the data from our fetch requests available across the app.
 
-/////////////////////////
-// DEPENDENCIES
-/////////////////////////
-const express = require("express")
-
-
-/////////////////////////
-// The Application Object
-/////////////////////////
-const app = express()
-
-
-/////////////////////////
-// Routes
-/////////////////////////
-
-// home route that says "hello world" to test server is working
-app.get("/", (req, res) => {
-    //res.json let's us send a response as JSON data
-    res.json({
-        response: "Hello World"
-    })
-})
-
-/////////////////////////
-// Listener
-/////////////////////////
-// We chose a non 3000 port because react dev server uses 3000 the highest possible port is 65535
-// Why? cause it's the largest 16-bit integer, fun fact!
-// But because we are "elite" coders we will use 1337
-app.listen(1337, () => console.log("Listening on port 1337"))
-
-```
-
-- Go to localhost:1337 and see if you get a response. If so, you've successfully created an API!
-
-## Let's talk Turtles...
-
-Now creating an API that sends "Hello World" as JSON isn't the most valuable thing in the world but it is an API. Let's build something more interesting. An API of famous turtles.
-
-- Will be able to Create, Read, Update and Delete a turtle
-- We will use a static array, so if the server restarts so will the data, keep in mind
-
-### The Data
-
-Let's add our array with starter data to our code below the Application Object
-
-server.js
-```js
-/////////////////////////
-// The Data
-/////////////////////////
-const turtles = [
-    {name: "Leonardo", role: "ninja"},
-    {name: "Michaelangelo", role: "ninja"},
-    {name: "Donatello", role: "ninja"},
-    {name: "Raphael", role: "ninja"},
-]
-```
-
-## Index Route
-
-Let's add an index route that will return the list of turtles as JSON.
+open up src/index.js
 
 ```js
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { RecoilRoot } from "recoil";
+import { QueryClient, QueryClientProvider } from "react-query";
 
-/////////////////////////
-// Routes
-/////////////////////////
+const queryClient = new QueryClient();
 
-// home route that says "hello world" to test server is working
-app.get("/", (req, res) => {
-    //res.json let's us send a response as JSON data
-    res.json({
-        response: "Hello World"
-    })
-})
+ReactDOM.render(
+  <QueryClientProvider client={queryClient}>
+    <RecoilRoot>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </RecoilRoot>
+  </QueryClientProvider>,
+  document.getElementById("root")
+);
 
-// Turtles Index Route (Send All Turtles)
-app.get("/turtles", (req, res) => {
-    // send the turtles array as JSON
-    res.json(turtles)
-})
-
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
 ```
 
-- Go to localhost:1337/turtles and test route
+## Creating State with Recoil
 
-## Show Route
-
-Let's create a route where we can fetch an individual turtle. This often won't be needed in our React app since the full list of data is often stored in State and we can pull individual items from there, but still nice to have in case.
+In Recoil, state you want shared with Recoil are called atoms. Let's create an src/atom.js file to declare all our atoms.
 
 ```js
-// Turtles Show Route (Send One Turtle)
-app.get("/turtles/:index", (req, res) => {
-    // send turtle as json
-    res.json(turtles[req.params.index])
+import { atom } from "recoil";
+
+// declare and export an atom
+export const counterState = atom({
+    // the key is used to track the state internally in recoil
+    key: 'counterState',
+    // default value is the value if not other value exists, the starting value essentially
+    default: 0
 })
 ```
 
-- head over to `localhost:1337/turtles/1` and `/2`, `/3`, `/4` and make sure you get the expected responses
+## Using the Recoil State
 
-### Create Route
-
-Now to create a post route in which we can send a json body and create a new turtle. To receive a JSON body we will need middleware to parse it, this will be express.json(). This is kind of like how we used express.urlencoded to parse data from form submission when we server rendered the pages.
+Let's create a counter component in src/components/counter.js
 
 ```js
-/////////////////////////
-// The Application Object
-/////////////////////////
-const app = express()
+import { counterState } from "../atom";
+import { useRecoilState } from "recoil";
 
-/////////////////////////
-// MIDDLEWARE
-/////////////////////////
+function Counter(props) {
+  // bring in the state from the atom
+  const [counter, setCounter] = useRecoilState(counterState);
 
-app.use(express.json())
-```
-
-Now we can add the post route!
-
-```js
-// Turtles Index Route (Send All Turtles)
-app.post("/turtles", (req, res) => {
-    // push the request body into the array
-    turtles.push(req.body)
-    // send the turtles array as JSON
-    res.json(turtles)
-})
-```
-
-### Testing the Post Route
-
-We can't test this route in the browser since a browser cannot make post requests from putting a url in the url bar. Luckily, we have postman!
-
-- Open postman
-
-- Open a new tab
-
-- set the method to `post`
-
-- set the url to `http://localhost:1337/turtles`
-
-- choose `raw` for body and select `json` for your datatype and send the following
-
-```json
-{
-    "name": "Filbert",
-    "role": "Rocco's Friend"
+  return (
+    <div>
+      <h1>{counter}</h1>
+      <button onClick={() => setCounter(counter + 1)}>Add</button>
+    </div>
+  );
 }
 
+export default Counter;
 ```
 
-- Submit the request and confirm whether you see Filbert with the other turtles!
+let's import the component in App and see it at work
 
-## The Update Route
-
-Let's make another route to update a turtle.
+src/App.js
 
 ```js
-// Turtles Update Route
-app.put("/turtles/:index", (req, res) => {
-    // replace the turtle at the specified index with the request body
-    turtles[req.params.index] = req.body
-    // send the turtles array as JSON
-    res.json(turtles)
-})
+import Counter from "./components/counter";
+
+function App(props) {
+  return (
+    <div>
+      <Counter />
+    </div>
+  );
+}
+
+export default App;
 ```
 
-- make a put request to localhost:1337/turtles/0 make sure to pass Filbert as JSON, Filbert should end up replacing Leonardo.
-
-## The Delete Route
-
-A route to delete a turtle, since we're dealing with a simple array we can use the splice method to remove the desired turtle.
+Now add two counters:
 
 ```js
-// Turtles delete Route
-app.delete("/turtles/:index", (req, res) => {
-    // remove the turtle at the specifed index
-    turtles.splice(req.params.index, 1)
-    // send the turtles array as JSON
-    res.json(turtles)
-})
+import Counter from "./components/counter";
+
+function App(props) {
+  return (
+    <div>
+      <Counter />
+      <Counter />
+    </div>
+  );
+}
+
+export default App;
 ```
 
-- send a delete request to localhost:1337/turtles/1 and Michaelangelo should dissapear
+Notice they both always update, this is because they don't have their own internat state. Instead they are both working off the same external state from recoil. So recoil should be used when you have data that should be in sync throughout your app.
 
-## Conclusion
+## Using React-Query
 
-When express is only managing the Controllers and Models part of MVC, life gets a lot easier in the backend. Although, the tradeoff managing the state in our front-end get more complicated, no perfect solution.
+create another component, src/components/request.js
+
+```js
+import { useQuery } from "react-query";
+
+function Request() {
+  // make our query
+  const response = useQuery("myQuery", async () => {
+    const r = await fetch("https://jsonplaceholder.typicode.com/todos/1");
+    return r.json();
+  });
+
+  console.log(response);
+
+  return <h1>Request</h1>;
+}
+
+export default Request;
+```
+
+the useQuery hook takes two arguments...
+
+- query key, this is a string for tracking and chaching the query. If another component uses the same key it knows it's the same query so won't refetch but instead use the cached data.
+
+- query function, a function that makes the desired request and returns a promise
+
+## Test it out in app
+
+let's use this component in App.js
+
+```js
+import Counter from "./components/counter";
+import Request from "./components/request";
+
+function App(props) {
+  return (
+    <div>
+      <Counter />
+      <Counter />
+      <Request/>
+    </div>
+  );
+}
+
+export default App;
+```
+
+Examine the console.log and see how the response is given back.
+
+Let's use two copies
+
+```js
+import Counter from "./components/counter";
+import Request from "./components/request";
+
+function App(props) {
+  return (
+    <div>
+      <Counter />
+      <Counter />
+      <Request/>
+      <Request/>
+    </div>
+  );
+}
+
+export default App;
+```
+
+Notice that even though we used the component twice, the console.logs don't increase. This is cause both components are altering the data from the same place kinda like we saw in recoil.
+
+### What's in the response
+
+The main things of note in the response object
+
+- data: the data from the api call
+- isLoading: a boolean on whether the call is still pending, can be used to return loading JSX
+- isError: a boolean on whether the call has failed to return error JSX
+- refetch: a function to repeat the call and update the data for everywhere it is used
+- error: the error if there is one
+
+## Bonus - Custom Hooks
+
+### Custom Hooks for react-query
+
+To make it even easier to refer to the same api call in multiple components, you can build custom hooks to avoid typing the same query function key and function over and over agian. Make a file src/queryhooks.js.
+
+queryhooks.js
+
+```js
+import { useQuery } from "react-query";
+
+// api request custom hook
+export const useJsonPlaceholder = () => {
+    // make api call and save response
+    const response = useQuery("myQuery", async () => {
+    const r = await fetch("https://jsonplaceholder.typicode.com/todos/1");
+    return r.json();
+  });
+  // return response
+  return response
+};
+```
+
+now we can use this custom hook instead of typing out that entire useQuery again.
+
+src/components/request.js
+
+```js
+import { useJsonPlaceholder } from "../hooks";
+
+function Request() {
+  // make our query
+
+  const response = useJsonPlaceholder()
+
+  console.log(response);
+
+  return <h1>Request</h1>;
+}
+
+export default Request;
+```
+
+Also, let's destructure some of those response properties and show how we can render the component conditionally.
+
+```js
+import { useJsonPlaceholder } from "../hooks";
+
+function Request() {
+  // make our query
+
+  const { data, isError, isLoading, refetch } = useJsonPlaceholder();
+
+  // JSX for ERROR
+  if (isError) {
+    return (
+      <div>
+        <h1>Request Failed</h1>
+        <button onClick={() => refetch()}>Try Again</button>
+      </div>
+    );
+  }
+
+  // JSX for Loading
+  if (isLoading) {
+    return (
+      <div>
+        <h1>Loading</h1>
+        <button onClick={() => refetch()}>Try Again</button>
+      </div>
+    );
+  }
+
+  // JSX for API Call Complete
+  return (
+    <div>
+      <h1>Request Succeded</h1>
+      <ul>
+        {Object.keys(data).map((key) => (
+          <li>
+            {key}: {data[key]}
+          </li>
+        ))}
+      </ul>
+      <button onClick={() => refetch()}>Try Again</button>
+    </div>
+  );
+}
+
+export default Request;
+```
+
+### custom hooks for recoil
+
+For our atoms we can just make our custom hooks when we declare them, like so.
+
+atom.js
+
+```js
+import { atom, useRecoilState } from "recoil";
+
+// declare and export an atom
+const counterState = atom({
+    // the key is used to track the state internally in recoil
+    key: 'counterState',
+    // default value is the value if not other value exists, the starting value essentially
+    default: 0
+})
+
+// declare custom hook for the using the atom
+export const useCounterState = () => {
+    return useRecoilState(counterState)
+}
+
+```
+
+Now we don't have to import useRecoilState and the atom, we can just import the custom hook in any components that use that state.
+
+counter.js
+
+```js
+import { useCounterState } from "../atom";
+
+function Counter(props) {
+  // bring in the state from the atom
+  const [counter, setCounter] = useCounterState()
+
+  return (
+    <div>
+      <h1>{counter}</h1>
+      <button onClick={() => setCounter(counter + 1)}>Add</button>
+    </div>
+  );
+}
+
+export default Counter;
+```
+
+The great thing about customhooks it lets us clean up our code and make reusing state across our app so much easier!
+
+## Non-Deliverable Lab
+
+Try to take the build you created last week and refactor it using react-query and/or recoil.
+
+I highly recommend making these changes on a branch so you keep your original code. Commit what you have already and then run the command `git checkout -b refactor` to work from a branch called refactor. While on this branch push your code using `git push origin refactor`. 
+
+- you can switch branches at anytime with `git checkout BRANCH_NAME`
+- you can see what your current list of branches with the command of `git branch`

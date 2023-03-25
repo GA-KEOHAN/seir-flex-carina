@@ -1,18 +1,16 @@
 ---
 track: "Full-Stack Development"
-title: "Day 1"
+title: "Day 2"
 week: 9
-day: 1
+day: 2
 type: "homepage"
-topics: "Intro to Mongo"
+topics: "Intro to MongoDB"
 ---
 
-# Mongo Intro
+#### Intro to Mongoose
 
-- [**Morning Exercise:** HTML/CSS Forms](/full-stack-development/week-9/day-3/lecture-materials/html-css-forms)
-
-- [**Lecture:** Intro to MongoDB](/full-stack-development/week-9/day-2/lecture-materials/intro-to-mongodb/)
-- [**Resource:** Create a Cloud-Hosted MongoDB](/full-stack-development/week-9/day-2/lecture-materials/create-an-atlas-hosted-mongodb/) 
-
-- [**Option Bonus Lab:** Exobilogy II](/full-stack-development/week-9/day-1/labs/exobiology-2) - **Non-Deliverable**
-- [**Homework:** Pokedex](/full-stack-development/week-9/day-1/labs/pokedex) - **Deliverable**
+- [**Lecture:** Intro to Mongoose](/full-stack-development/week-9/day-3/lecture-materials/intro-to-mongoose) 
+- [**Lab** Express-Mongo-Giphy-Lab](https://github.com/seir-flex/unit-2-lab-express-mongo-giphy)
+<!-- - [**Lab:** Heroku Deployment](/full-stack-development/week-9/day-3/labs/heroku-deployment) - **Deliverable** -->
+<!-- - [**Lecture:** CRUD App with Mongoose - Create & Read](/full-stack-development/week-9/day-3/lecture-materials/crud-app-with-mongoose) -->
+- [**Resource Guide:** Creating a Seed Route](/full-stack-development/week-9/day-3/lecture-materials/creating-a-seed-route)

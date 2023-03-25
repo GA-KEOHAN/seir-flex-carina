@@ -4,7 +4,8 @@ title: "Day 1"
 week: 11
 day: 1
 type: "homepage"
-topics: "Holiday"
+topics: "Deployment"
 ---
+# Deployment
 
-Use time to finish unfinished labs and review
+- [Deployment on Render.com](/full-stack-development/week-10/day-1/lecture/deployment)

@@ -289,7 +289,7 @@ Once you have your api key here is what we will do:
 - interpolate the apikey and symbol in the fetch URL
 - return the data and use the useLoader hook to use it in our component
 
-First let's create our loader function, let's create a file called `src/loaders.js`
+First let's create our loader function, let's create a file called `src/loader.js`
 
 ```js
 export const priceLoader = async ({params}) => {

@@ -1,6 +1,10 @@
 ## Animals App
 
-Build an App similar to our fruits app with animals.
+Build an App similar to our fruits app with animals.  The server must include the following:
+- all CRUD routes that interact with the database
+- db connection file
+- schema and model 
+- views 
 
 ### The Animal Model
 
@@ -9,8 +13,5 @@ Build an App similar to our fruits app with animals.
 - location: String
 - lifeExpectancy: Number
 
-**THIS IS DUE SEPTEMBER 9th**
-
 **Hungry for More**
 - add session based auth
-- incorporate Aliple or HTMX

@@ -4,8 +4,7 @@ title: "Day 3"
 week: 15
 day: 3
 type: "homepage"
-topics: "Holiday"
+topics: "Build Part #3 - React App show, update and delete"
 ---
 
-Use this time for catch-up on deliverables and review
-
+- [**Build & Lab Part 3**](/react-fundamentals/week-15/day-3/lecture/)

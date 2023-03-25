@@ -4,10 +4,7 @@ title: "Day 2"
 week: 17
 day: 2
 type: "homepage"
-topics: "Group Work"
+topics: "Project Week"
 ---
 
-### Group Work - Mini Group Project
-
-- [**Lecture: Group Work**](/react-fundamentals/week-17/day-3/lecture)
-- [**Bookmark'd: Group Lab**](/react-fundamentals/week-17/day-2/lab)
+# Project week

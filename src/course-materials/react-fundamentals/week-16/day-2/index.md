@@ -4,13 +4,10 @@ title: "Day 2"
 week: 16
 day: 2
 type: "homepage"
-topics: "Creating a JSON API in Express"
+topics: "Bookmark'd Work Time"
 ---
 
-#### Creating a JSON API in Express
-- [**Lecture: Creating a JSON API in Express**](/react-fundamentals/week-15/day-1/lecture/)
-- [**Build & Lab Part 1**](/react-fundamentals/week-15/day-2/lecture/)
+Bookmark'd Lab Time
 
-- [**Homework: Build A Portfolio**](/react-fundamentals/week-14/day-3/lab/) - **DELIVERABLE**
-
-
+#### Group Project / Project 3
+- [**Activity: Review Project 3 Requirements**](/unit-projects/unit-three-project-requirements)

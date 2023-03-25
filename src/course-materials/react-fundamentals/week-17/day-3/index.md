@@ -4,10 +4,7 @@ title: "Day 3"
 week: 17
 day: 3
 type: "homepage"
-topics: "Holiday"
+topics: "Holiday - Memorial Day Weekend"
 ---
 
-
-Use this time for review and group work
-
-
+# Project week

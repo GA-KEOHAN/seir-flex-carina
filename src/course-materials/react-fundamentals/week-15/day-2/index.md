@@ -4,8 +4,7 @@ title: "Day 2"
 week: 15
 day: 2
 type: "homepage"
-topics: "Holiday"
+topics: "Express & React Build"
 ---
 
-Use this time for catch-up on deliverables and review
-
+- [**Build & Lab Part 2**](/react-fundamentals/week-15/day-3/lecture/)

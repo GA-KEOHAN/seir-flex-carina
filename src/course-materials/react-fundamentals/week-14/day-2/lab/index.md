@@ -1,54 +1,25 @@
-# React Router
+## Lab
 
-Spin a new react up using create-react-app
+So you built a turtles API. The only issue is you are using an array so it resets whenever the server resets. Try refactoring your API using mongoose.
 
-<!-- Previous solution Look over the working [Solution](https://vhixt.csb.app/) -->
-Look over the working [Solution](https://xupn0g.csb.app/) and examine the app in React Dev Tools to see if you can elicit the structure so that you have a starting point for you app. 
+#### General Steps to take
 
-This version of the application should use hard-coded stocks data, which you can find in create a data.json file with the data below to use. however if you want to leverage pulling data from an API you can sign up for an API key and use [https://financialmodelingprep.com/](https://financialmodelingprep.com/)
+**TEST EACH STEP AS YOU GO, USE POSTMAN**
 
-data for your data.json file, just copy and paste it into a new data.json file in your src folder and then import the file. `import data from "./data.json"`
+- install mongoose and dotenv
+- setup your connection in server.js or another file
+- setup your Turtle model in server.js or another file
+- create a route that is a get request to /seed that will pass the turtles array to Turtle.create and seed your database
+- refactor the index route to pull the data from mongo not the array
+- refactor the show route to pull the data from mongo not the array based on :id not :index
+- refactor the create route to create a new turtle in mongo not the array
+- refactor the update route to update an existing turtle in mongo, not the array using :id not :index
+- refactor the delete route to delete an existing turtle in mongo, not the array using :id not :index
 
-```json
-[
-  {name: "Apple Inc.", symbol: "AAPL", lastPrice: 140.64, change: -0.280000000000001, high: 141.74, low: 140.35, open: 141.5},
-  {name: "Microsoft Corporation", symbol: "MSFT", lastPrice: 64.98, change: 0.109999999999999, high: 65.45, low: 64.76, open: 65.12},
-  {name: "Alphabet Inc.", symbol: "GOOGL", lastPrice: 835.14, change: -4.50999999999999, high: 844, low: 829.1, open: 842},
-  {name: "Facebook, Inc.", symbol: "FB", lastPrice: 140.34, change: 0.810000000000002, high: 141.0244, low: 139.76, open: 140.08},
-  {name: "Oracle Corporation", symbol: "ORCL", lastPrice: 44.65, change: -0.300000000000004, high: 45.09, low: 44.575, open: 44.91},
-  {name: "Intel Corporation", symbol: "INTL", lastPrice: 36.16, change: -0.370000000000005, high: 36.78, low: 36.125, open: 36.58}
-]
-```
+## Hungry for More
 
-Here is your routing table. So when your app is complete it should have all the routes below.
+Create a react app and try to at least call the index route and display the turtles.
 
-| Route | Renders                                   | Component        |
-| --------- | ----------------------------------------- | ------------- |
-| /      | "This is the Homepage page"                    | Home             |
-| /about     | "This is theAabout page"| About |
-| /stocks/:symbol     | A single stock                         | Stock      |
-| /stocks   | All stocks      | Dashboard    |
-
-Your stock tracking app should have the following features...
-
-## Navigation
-
-No matter what route the user is visiting, they should always see a navigation bar at the top of the window. It should contain links to "Home" and "About" pages.
-
-## Dashboard (`/stocks`)
-
-If a user visits `/stocks` or clicks "Home" in the navigation bar, they should be directed to a dashboard page. This page should list all of the stocks that the user is tracking, specifically their `name` and `symbol`. These stocks should be pulled from [`stock-data.js`](./stock-data.js).
-
-**Bonus:** Try rendering the stocks as per the image below.
-
-![https://i.imgur.com/NP4mznx.png](https://i.imgur.com/NP4mznx.png)
-
-## Stock (`/stocks/:symbol`)
-
-If a user clicks on one of the stocks listed in the Dashboard view, they should be directed to an individual stock show view. This view should display all of a stock's attributes.
-
-> The resources listed at the bottom of the [readme](README.md) might come in handy when building this out.
-
-## About (`/about`)
-
-If a user clicks on "About" in the navigation bar, they should be directed to an about page. This is just a static page that displays a description of your app.
+If you run into an error check out the following resources to fix:
+- [This Video is Quick Explanation of your Error](https://www.youtube.com/watch?v=4KHiSt0oLJ0)
+- [This Library is the Solution](https://www.npmjs.com/package/cors)

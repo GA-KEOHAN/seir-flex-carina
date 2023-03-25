@@ -1555,7 +1555,7 @@ It works but as you can see it is now inject the header a second time, so let's 
 
 Now it should be working like before but now the server doesn't have to render as much when you ask for the show page.
 
-## Bonus Refactor #7 - Isolating the Middleware
+## Bonus Refactor - Isolating the Middleware
 
 Let's move the middleware into it's own file like we did the models and controllers
 
@@ -1634,7 +1634,7 @@ const PORT = process.env.PORT;
 app.listen(PORT, () => console.log(`Now Listening on port ${PORT}`));
 ```
 
-## Bonus Refactor #8 - the home router
+## Bonus Refactor - the home router
 
 Let's get all routes outside of server.js by making a homerouter for "/" routes
 

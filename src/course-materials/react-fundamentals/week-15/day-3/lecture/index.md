@@ -1,184 +1,309 @@
-# React People Setup, Index, Create
+# People Build, Show, Edit and Delete
 
-## Setup
+## Links to Show Page
 
-- open terminal in frontend folder
+Right now the link to each show page doesn't work, let's fix that!
 
-- install react router and sass:
+## The Show Page
 
-```
-  npm install react-router-dom sass
-```
-
-- create a file called styles.scss in the /src folder
-
-## Installing Router and Sass
-
-With React-Router we will be able to create Routes, Loaders and Actions:
-
-- Routes: A component that render when navigate to a particular URL
-- Loaders: A function to get data that runs before a route loads and can be used in a component with the useLoaderData hook
-- Actions: Functions that run if a `Form` component is submitted to a particular route.
-
-To keep track of these create three files in your `src` folder
-
-- router.js
-- loaders.js
-- actions.js
-
-In router.js let's setup our router:
+First step is we need a loader for the the show route, let's add it to `loaders.js`
 
 ```js
-import {
-  createBrowserRouter,
-  createRoutesFromElements,
-  Route,
-} from "react-router-dom"
-import App from "./App"
+const URL = "http://localhost:4000"
 
-const router = createBrowserRouter(
-  createRoutesFromElements(<Route path="/" element={<App />}></Route>)
-)
-
-export default router
-```
-
-- Update index.js to like like so
-
-```js
-import React from "react"
-import ReactDOM from "react-dom/client"
-import "./styles.scss"
-import reportWebVitals from "./reportWebVitals"
-import { RouterProvider } from "react-router-dom"
-import router from "./router"
-
-const root = ReactDOM.createRoot(document.getElementById("root"))
-root.render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
-)
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals()
-```
-
-## Scoping Out Our Components
-
-- Create a components and pages folder
-
-- In the components folder create a Header.js file
-
-- In the pages folder create a Index.js and Show.js folder
-
-- Write the component boilerplate and export the component in all the created files
-
-```jsx
-function Component(props) {
-  return <h1>Component Name</h1>
+export const peopleLoader =  async() => {
+    const response = await fetch(URL + "/people")
+    const people = await response.json()
+    return people
 }
 
-export default Component
+export const personLoader = async ({params}) => {
+    const response = await fetch(URL + "/people/" + params.id )
+    const person = await response.json()
+    return person
+}
 ```
 
-## App.js
-
-Our desired component Architecture
-
-```
--> App
-  -> Header
-  -> Outlet
-      -> Route |path: "/"|
-        -> Index |loads all people|
-      -> Route |path="/people/:id|
-        -> Show |loads single person|
-      -> Route |path: "/create"| Action to create people
-      -> Route |path: "/update/:id"| Action to update people
-      -> Route |path: "/delete/:id"| Action to delete people
-```
-
-Let's update our routes in router.js:
+Let's attach the loader to the route in router.js
 
 ```js
-import {
-  createBrowserRouter,
-  createRoutesFromElements,
-  Route,
-} from "react-router-dom"
+import {createBrowserRouter, createRoutesFromElements, Route} from "react-router-dom"
 import App from "./App"
 import Index from "./pages/Index"
 import Show from "./pages/Show"
+import { peopleLoader, personLoader } from "./loaders"
+import { createAction } from "./actions"
 
-const router = createBrowserRouter(
-  createRoutesFromElements(
-    <Route path="/" element={<App />}>
-      <Route path="" element={<Index />} />
-      <Route path=":id" element={<Show />} />
-      <Route path="create" />
-      <Route path="update/:id" />
-      <Route path="delete/:id" />
+const router = createBrowserRouter(createRoutesFromElements(
+    <Route path="/" element={<App/>}>
+        <Route path="" element={<Index/>} loader={peopleLoader}/>
+        <Route path=":id" element={<Show/>} loader={personLoader}/>
+        <Route path="create" action={createAction}/>
+        <Route path="update/:id"/>
+        <Route path="delete/:id"/>
     </Route>
-  )
-)
+))
 
 export default router
 ```
 
-Let's add the following to App.js
+Now let's build out our Show.js
+
 
 ```js
-import { Outlet } from "react-router-dom"
-import Header from "./components/Header"
+import { useLoaderData } from "react-router-dom"
 
-function App() {
+function Show(props) {
+    const person = useLoaderData()
+  
+    return (
+      <div className="person">
+        <h1>{person.name}</h1>
+        <h2>{person.title}</h2>
+        <img src={person.image} alt={person.name} />
+      </div>
+    )
+  }
+  
+  export default Show
+```
+
+## Updating a Person
+
+On the show page let's add
+
+- add a router Form
+
+- create an action for when the Form submits to `/update/:id`
+
+- attach the action to the right route
+
+```js
+import { useLoaderData, Form } from "react-router-dom";
+
+function Show(props) {
+  const person = useLoaderData();
+
   return (
-    <div className="App">
-      <Header />
-      <Outlet />
+    <div className="person">
+      <h1>{person.name}</h1>
+      <h2>{person.title}</h2>
+      <img src={person.image} alt={person.name} />
+
+      <h2>Update {person.name}</h2>
+      <Form action={`/update/${person._id}`} method="post">
+        <input type="input" name="name" placeholder="person's name" />
+        <input type="input" name="image" placeholder="person's picture" />
+        <input type="input" name="title" placeholder="person's title" />
+        <input type="submit" value={`update ${person.name}`} />
+      </Form>
     </div>
-  )
+  );
 }
 
-export default App
+export default Show;
 ```
 
-## Setting up router in Main.js
-
-- let's create our routes
-
-## Setting Up Navigation
-
-Let's put the following in Header.js
+Now let's add an action to handle the update to actions.js
 
 ```js
-import { Link } from "react-router-dom"
+import { redirect } from "react-router-dom"
 
-function Header(props) {
-  return (
-    <nav className="nav">
-      <Link to="/">
-        <div>People App</div>
-      </Link>
-    </nav>
-  )
+const URL = "http://localhost:4000"
+
+export const createAction = async ({request}) => {
+    // get data from form
+    const formData = await request.formData()
+    // set up our new person to match schema
+    const newPerson = {
+        name: formData.get("name"),
+        image: formData.get("image"),
+        title: formData.get("title")
+    }
+    // Send new person to our API
+    await fetch(URL + "/people", {
+        method: "post",
+        headers: {
+            "Content-Type":"application/json"
+        },
+        body: JSON.stringify(newPerson)
+    })
+    // redirect to index
+    return redirect("/")
 }
 
-export default Header
+export const updateAction = async ({request, params}) => {
+    // get data from form
+    const formData = await request.formData()
+    // set up our new person to match schema
+    const updatedPerson = {
+        name: formData.get("name"),
+        image: formData.get("image"),
+        title: formData.get("title")
+    }
+    // Send new person to our API
+    await fetch(URL + "/people/" + params.id, {
+        method: "put",
+        headers: {
+            "Content-Type":"application/json"
+        },
+        body: JSON.stringify(updatedPerson)
+    })
+    // redirect to index
+    return redirect("/")
+}
 ```
 
-## Sass
+Now we just add that action to right route and we're good to go!
 
-Sass is a CSS pre-compiler that allows us some new tricks in writing CSS including...
+router.js
+```js
+import {createBrowserRouter, createRoutesFromElements, Route} from "react-router-dom"
+import App from "./App"
+import Index from "./pages/Index"
+import Show from "./pages/Show"
+import { peopleLoader, personLoader } from "./loaders"
+import { createAction, updateAction } from "./actions"
 
-- Nesting
-- Mixin
-- Variables
+const router = createBrowserRouter(createRoutesFromElements(
+    <Route path="/" element={<App/>}>
+        <Route path="" element={<Index/>} loader={peopleLoader}/>
+        <Route path=":id" element={<Show/>} loader={personLoader}/>
+        <Route path="create" action={createAction}/>
+        <Route path="update/:id" action={updateAction}/>
+        <Route path="delete/:id"/>
+    </Route>
+))
 
-Let's write some Sass in our styles.scss
+export default router
+```
+
+## Deleting a Person
+
+All we have to do is add a delete button now, and we can do that using a Form and following the same pattern.
+
+- Add Form
+- Add Action
+- Connect Action to Route
+
+```js
+import { useLoaderData, Form } from "react-router-dom";
+
+function Show(props) {
+  const person = useLoaderData();
+
+  return (
+    <div className="person">
+      <h1>{person.name}</h1>
+      <h2>{person.title}</h2>
+      <img src={person.image} alt={person.name} />
+
+      <h2>Update {person.name}</h2>
+      <Form action={`/update/${person._id}`} method="post">
+        <input type="input" name="name" placeholder="person's name" defaultValue={person.name}/>
+        <input type="input" name="image" placeholder="person's picture" defaultValue={person.image}/>
+        <input type="input" name="title" placeholder="person's title" defaultValue={person.title} />
+        <input type="submit" value={`update ${person.name}`} />
+      </Form>
+      <h2>Delete Person</h2>
+      <Form action={`/delete/${person._id}`} method="post">
+      <input type="submit" value={`delete ${person.name}`} />
+      </Form>
+    </div>
+  );
+}
+
+export default Show;
+```
+
+Create our action in action.js
+
+```js
+import { redirect } from "react-router-dom"
+
+const URL = "http://localhost:4000"
+
+export const createAction = async ({request}) => {
+    // get data from form
+    const formData = await request.formData()
+    // set up our new person to match schema
+    const newPerson = {
+        name: formData.get("name"),
+        image: formData.get("image"),
+        title: formData.get("title")
+    }
+    // Send new person to our API
+    await fetch(URL + "/people", {
+        method: "post",
+        headers: {
+            "Content-Type":"application/json"
+        },
+        body: JSON.stringify(newPerson)
+    })
+    // redirect to index
+    return redirect("/")
+}
+
+export const updateAction = async ({request, params}) => {
+    // get data from form
+    const formData = await request.formData()
+    // set up our new person to match schema
+    const updatedPerson = {
+        name: formData.get("name"),
+        image: formData.get("image"),
+        title: formData.get("title")
+    }
+    // Send updated person to our API
+    await fetch(URL + "/people/" + params.id, {
+        method: "put",
+        headers: {
+            "Content-Type":"application/json"
+        },
+        body: JSON.stringify(updatedPerson)
+    })
+    // redirect to index
+    return redirect("/")
+}
+
+export const deleteAction = async ({params}) => {
+    // delete person with our API
+    await fetch(URL + "/people/" + params.id, {
+        method: "delete"
+    })
+    // redirect to index
+    return redirect("/")
+}
+```
+
+Attach the action to our `delete/:id` route
+
+router.js
+```js
+import {createBrowserRouter, createRoutesFromElements, Route} from "react-router-dom"
+import App from "./App"
+import Index from "./pages/Index"
+import Show from "./pages/Show"
+import { peopleLoader, personLoader } from "./loaders"
+import { createAction, updateAction, deleteAction } from "./actions"
+
+const router = createBrowserRouter(createRoutesFromElements(
+    <Route path="/" element={<App/>}>
+        <Route path="" element={<Index/>} loader={peopleLoader}/>
+        <Route path=":id" element={<Show/>} loader={personLoader}/>
+        <Route path="create" action={createAction}/>
+        <Route path="update/:id" action={updateAction}/>
+        <Route path="delete/:id" action={deleteAction}/>
+    </Route>
+))
+
+export default router
+```
+
+CRUD functionality should be complete
+
+## Some Final Styling
+
+A few more changes to our styles.scss
 
 ```scss
 // --------------------------
@@ -214,174 +339,113 @@ nav {
     }
   }
 }
-```
 
-## Displaying People in Index
+// --------------------------
+// Form
+// --------------------------
 
-First we will give the index route a loader to load all the people who should be listed. This is how `src/loaders.js` should look like:
+section,
+div {
+  form {
+    input {
+      @include white-text-black-bg;
+      padding: 10px;
+      font-size: 1.1em;
+      margin: 10px;
 
-```js
-const URL = "http://localhost:4000"
-
-export const peopleLoader = async () => {
-  const response = await fetch(URL + "/people")
-  const people = await response.json()
-  return people
-}
-```
-
-Then we attach this loader to our route in router.js
-
-```js
-import {
-  createBrowserRouter,
-  createRoutesFromElements,
-  Route,
-} from "react-router-dom"
-import App from "./App"
-import Index from "./pages/Index"
-import Show from "./pages/Show"
-import { peopleLoader } from "./loaders"
-
-const router = createBrowserRouter(
-  createRoutesFromElements(
-    <Route path="/" element={<App />}>
-      <Route path="" element={<Index />} loader={peopleLoader} />
-      <Route path=":id" element={<Show />} />
-      <Route path="create" />
-      <Route path="update/:id" />
-      <Route path="delete/:id" />
-    </Route>
-  )
-)
-
-export default router
-```
-
-Let's now display the people in Index.js
-
-```js
-import { Link, useLoaderData } from "react-router-dom"
-
-function Index(props) {
-  const people = useLoaderData()
-
-  return people.map(person => (
-    <div key={person._id} className="person">
-      <Link to={`/${person._id}`}>
-        <h1>{person.name}</h1>
-      </Link>
-      <img src={person.image} alt={person.name} />
-      <h3>{person.title}</h3>
-    </div>
-  ))
-}
-
-export default Index
-```
-
-## Creating People
-
-Let's now add a form to our index.js
-
-- Use the react-router form component which triggers a route actions when submitted
-- We will create an action that create a person from the form data with our API
-
-```js
-import { Form, Link, useLoaderData } from "react-router-dom"
-
-function Index(props) {
-  const people = useLoaderData()
-
-  return (
-    <div>
-      <h2>Create a Person</h2>
-      <Form action="/create" method="post">
-        <input type="input" name="name" placeholder="person's name" />
-        <input type="input" name="image" placeholder="person's picture" />
-        <input type="input" name="title" placeholder="person's title" />
-        <input type="submit" value="create person" />
-      </Form>
-
-      <h2>People</h2>
-      {people.map(person => (
-        <div key={person._id} className="person">
-          <Link to={`/${person._id}`}>
-            <h1>{person.name}</h1>
-          </Link>
-          <img src={person.image} alt={person.name} />
-          <h3>{person.title}</h3>
-        </div>
-      ))}
-    </div>
-  )
-}
-
-export default Index
-```
-
-Now we just need to create an action for when that form is submitted for the `/create` route. Let's add the following to `actions.js`:
-
-```js
-import { redirect } from "react-router-dom"
-
-const URL = "http://localhost:4000"
-
-export const createAction = async ({ request }) => {
-  // get data from form
-  const formData = await request.formData()
-  // set up our new person to match schema
-  const newPerson = {
-    name: formData.get("name"),
-    image: formData.get("image"),
-    title: formData.get("title"),
+      &[type="submit"]:hover {
+        @include black-test-white-bg;
+      }
+    }
   }
-  // Send new person to our API
-  await fetch(URL + "/people", {
-    method: "post",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(newPerson),
-  })
-  // redirect to index
-  return redirect("/")
+}
+
+// --------------------------
+// button
+// --------------------------
+
+button#delete {
+  @include white-text-black-bg;
+  display: block;
+  margin: auto;
+  font-size: 1.3em;
+  padding: 10px;
+}
+
+// --------------------------
+// images
+// --------------------------
+
+img {
+  width: 300px;
+  height: 300px;
+  border-radius: 90px;
+  object-fit: cover;
 }
 ```
 
-Now let's attach this action to the right route in router.js:
+Just make sure the URL in your actions.js and loaders.js is your deployed API URL.
 
-```js
-import {
-  createBrowserRouter,
-  createRoutesFromElements,
-  Route,
-} from "react-router-dom"
-import App from "./App"
-import Index from "./pages/Index"
-import Show from "./pages/Show"
-import { peopleLoader } from "./loaders"
-import { createAction } from "./actions"
+## Configuring Redirects for React Router
 
-const router = createBrowserRouter(
-  createRoutesFromElements(
-    <Route path="/" element={<App />}>
-      <Route path="" element={<Index />} loader={peopleLoader} />
-      <Route path=":id" element={<Show />} />
-      <Route path="create" action={createAction} />
-      <Route path="update/:id" />
-      <Route path="delete/:id" />
-    </Route>
-  )
-)
+Since we are using React Router which aren't real routes, a user may refresh a page and get an error so we need to make sure our host will redirect requests to any other url back to our application.
 
-export default router
+#### 2 Ways to do this for Netlify.com
+
+- add a netlify.toml with the following
+
+```toml
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
 ```
 
-## Conclusion
+- or add a file called `_redirects` in the public folder with the following:
+```
+/*  /index.html   200
+```
+#### 1 Way to do this for Vercel
 
-You should now be able to see all the people and create people
+_NOTE, if you wanted to deploy to Vercel you'd include a vercel.json with the following_
 
-## Lab
+```json
+{
+  "version": 2,
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/.*", "dest": "/index.html" }
+  ]
+}
+```
 
-Begin the Frontend for your Cheese app, and create the ability to display and create cheeses like our People app.
+#### 1 Way for Render
+
+For render you have to deploy first then in your project settings there is a section for setting up redirects. Setup a redirect with the following rule:
+```
+source: /*
+destination: /index.html
+```
+
+## Deployment Steps
+
+- push frontend repo to github
+
+- connect repo to netlify/vercel/render (for render deploy a static app, not a web service)
+
+just in case
+```
+build command: npm run build
+publish folder: build
+```
+
+- done
+
+**[FINISHED CODE FOR REFERENCE](https://github.com/AlexMercedCoder/peoplereactexpressbuildcode)**
+
+## Lab - Complete Your Cheese App
+
+Complete your cheese app using the steps of todays lessons adding the following:
+
+- the ability see an individual cheese
+- the ability edit a cheese
+- the ability to delete a cheese
