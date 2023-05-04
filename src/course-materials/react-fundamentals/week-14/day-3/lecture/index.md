@@ -4,7 +4,6 @@ In this build we will
 
 - Build an Express API
 - Use Mongo/Mongoose with 1 model
-- Deploy the Api with render
 - Build a Full Crud Frontend with React
 - Deploy with Netlify
 
