@@ -4,7 +4,7 @@ title: "Day 3"
 week: 14
 day: 3
 type: "homepage"
-topics: "Creating a JSON API in Express"
+topics: "Express & React Build - Part 1"
 ---
 
 #### Creating a JSON API in Express

@@ -4,7 +4,7 @@ title: "Day 1"
 week: 15
 day: 1
 type: "homepage"
-topics: "Express & React Build"
+topics: "Express & React Build - Part 2"
 ---
 
-- [**Build & Lab Part 1**](/react-fundamentals/week-15/day-2/lecture/)
+- [**Build & Lab Part 2**](/react-fundamentals/week-15/day-2/lecture/)
