@@ -4,7 +4,7 @@ title: "Day 3"
 week: 17
 day: 3
 type: "homepage"
-topics: "Holiday - Memorial Day Weekend"
+topics: "Project Approvals & Bookmark'd Presentations"
 ---
 
-# Project week
+Project Approvals day

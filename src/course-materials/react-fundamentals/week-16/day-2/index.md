@@ -4,10 +4,7 @@ title: "Day 2"
 week: 16
 day: 2
 type: "homepage"
-topics: "Bookmark'd Work Time"
+topics: "Express & React Build - Part 3 - Show/Update/Delete"
 ---
 
-Bookmark'd Lab Time
-
-#### Group Project / Project 3
-- [**Activity: Review Project 3 Requirements**](/unit-projects/unit-three-project-requirements)
+- [**Build & Lab Part 3**](/react-fundamentals/week-15/day-3/lecture/)

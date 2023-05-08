@@ -1,8 +1,8 @@
 ---
 track: "React Fundamentals"
-title: "Day 1"
-week: 18
-day: 1
+title: "Day 2"
+week: 19
+day: 2
 type: "homepage"
 topics: "Project Week"
 ---

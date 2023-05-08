@@ -1,374 +1,388 @@
-# React-Recoil and React-Request
+## Express React Build
 
-One of the best things about React is the huge developer community that exists creating an endless supply of libraries, component libraries and even full on frameworks to extend the use of React in web developmnet. In this lecture we'll target a few useful libraries that help solve some of Reacts greatest pain points.
+In this build we will
 
-## What are React's Pain Points?
+- Build an Express API
+- Use Mongo/Mongoose with 1 model
+- Deploy the Api with Heroku
+- Build a Full Crud Frontend with React
+- Deploy with Netlify
 
-Below you'll see a list of common pain points and libraries that aim to solve them.
+## Setup for Express Build
 
-| Pain Point | Libraries |
-|------------|-----------|
-| State Management | Recoil, Mobx, Redux, XState, merced-react-hooks |
-| Making API Calls | react-query, react-request, merced-react-hooks |
-| Forms | Formik, merced-react-hooks |
-| Styling | Styled Components, Emotion, JSS |
+- Create a folder called express-react
+- Inside this folder create another folder called backend
+- Generate a React app called frontend `npx create-react-app frontend`
 
-## Why React Recoil?
+Your folder structure should look like this...
 
-Over the years Redux has been probably the most used State Management library for React, recently the creators of React, Facebook, released their own state management library which provides a much simpler and more "Reacty" library called Recoil. Since it's created by the makers of React it touts some very convinient and powerfel functionality.
-
-## Why react-query
-
-React request doesn't just make the process of making API calls smooth, but it also abstracts away tedious issues like a caching and updating data, it has been growing quite popular since its release.
-
-## Let's Get Started
-
-- create a new react `npx create-react-app recoilquery`
-
-- install libraries `npm install recoil react-query`
-
-## Setting up the Providers
-
-Like many react libraries (like React Router) we setup the library by wrapping our App in a provider.
-
-- The recoil provider will help deliver our state across our application
-
-- the react-query provider will help make the data from our fetch requests available across the app.
-
-open up src/index.js
-
-```js
-import React from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
-import { RecoilRoot } from "recoil";
-import { QueryClient, QueryClientProvider } from "react-query";
-
-const queryClient = new QueryClient();
-
-ReactDOM.render(
-  <QueryClientProvider client={queryClient}>
-    <RecoilRoot>
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
-    </RecoilRoot>
-  </QueryClientProvider>,
-  document.getElementById("root")
-);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+```
+/express-react
+ -> /backend
+ -> /frontend
 ```
 
-## Creating State with Recoil
+- cd into `backend` folder
 
-In Recoil, state you want shared with Recoil are called atoms. Let's create an src/atom.js file to declare all our atoms.
+## Setting up the Express app
 
-```js
-import { atom } from "recoil";
+- create a new node project `npm init -y`
+- install dependencies `npm install dotenv mongoose express cors morgan`
+- install dev dependencies `npm install --save-dev nodemon`
+- setup npm scripts
 
-// declare and export an atom
-export const counterState = atom({
-    // the key is used to track the state internally in recoil
-    key: 'counterState',
-    // default value is the value if not other value exists, the starting value essentially
-    default: 0
-})
-```
-
-## Using the Recoil State
-
-Let's create a counter component in src/components/counter.js
-
-```js
-import { counterState } from "../atom";
-import { useRecoilState } from "recoil";
-
-function Counter(props) {
-  // bring in the state from the atom
-  const [counter, setCounter] = useRecoilState(counterState);
-
-  return (
-    <div>
-      <h1>{counter}</h1>
-      <button onClick={() => setCounter(counter + 1)}>Add</button>
-    </div>
-  );
+```json
+"scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
 }
-
-export default Counter;
 ```
 
-let's import the component in App and see it at work
+- make files `touch .env .gitignore server.js`
 
-src/App.js
+- put the following .gitignore
 
-```js
-import Counter from "./components/counter";
-
-function App(props) {
-  return (
-    <div>
-      <Counter />
-    </div>
-  );
-}
-
-export default App;
+```
+/node_modules
+.env
 ```
 
-Now add two counters:
+- put the following in .env (make sure to use YOUR mongodb.com uri)
 
-```js
-import Counter from "./components/counter";
-
-function App(props) {
-  return (
-    <div>
-      <Counter />
-      <Counter />
-    </div>
-  );
-}
-
-export default App;
+```
+MONGODB_URL=mongodb+src://...
+PORT=4000
 ```
 
-Notice they both always update, this is because they don't have their own internat state. Instead they are both working off the same external state from recoil. So recoil should be used when you have data that should be in sync throughout your app.
+## Starting Server.js
 
-## Using React-Query
-
-create another component, src/components/request.js
+Let's build out the minimum to get server.js up and running
 
 ```js
-import { useQuery } from "react-query";
+///////////////////////////////
+// DEPENDENCIES
+////////////////////////////////
+// get .env variables
+require("dotenv").config();
+// pull PORT from .env, give default value of 3000
+const { PORT = 3000 } = process.env;
+// import express
+const express = require("express");
+// create application object
+const app = express();
 
-function Request() {
-  // make our query
-  const response = useQuery("myQuery", async () => {
-    const r = await fetch("https://jsonplaceholder.typicode.com/todos/1");
-    return r.json();
-  });
+///////////////////////////////
+// ROUTES
+////////////////////////////////
+// create a test route
+app.get("/", (req, res) => {
+  res.send("hello world");
+});
 
-  console.log(response);
-
-  return <h1>Request</h1>;
-}
-
-export default Request;
+///////////////////////////////
+// LISTENER
+////////////////////////////////
+app.listen(PORT, () => console.log(`listening on PORT ${PORT}`));
 ```
 
-the useQuery hook takes two arguments...
+- run the server `npm run dev` and make sure you see "Hello World" when you go to `localhost:4000`
 
-- query key, this is a string for tracking and chaching the query. If another component uses the same key it knows it's the same query so won't refetch but instead use the cached data.
+## Adding a Database Connection
 
-- query function, a function that makes the desired request and returns a promise
-
-## Test it out in app
-
-let's use this component in App.js
+Let's update our server.js to include a database connection
 
 ```js
-import Counter from "./components/counter";
-import Request from "./components/request";
+///////////////////////////////
+// DEPENDENCIES
+////////////////////////////////
+// get .env variables
+require("dotenv").config();
+// pull PORT from .env, give default value of 3000
+// pull MONGODB_URL from .env
+const { PORT = 3000, MONGODB_URL } = process.env;
+// import express
+const express = require("express");
+// create application object
+const app = express();
+// import mongoose
+const mongoose = require("mongoose");
 
-function App(props) {
-  return (
-    <div>
-      <Counter />
-      <Counter />
-      <Request/>
-    </div>
-  );
-}
+///////////////////////////////
+// DATABASE CONNECTION
+////////////////////////////////
+// Establish Connection
+mongoose.connect(MONGODB_URL, {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+});
+// Connection Events
+mongoose.connection
+  .on("open", () => console.log("Your are connected to mongoose"))
+  .on("close", () => console.log("Your are disconnected from mongoose"))
+  .on("error", (error) => console.log(error));
 
-export default App;
+///////////////////////////////
+// ROUTES
+////////////////////////////////
+// create a test route
+app.get("/", (req, res) => {
+  res.send("hello world");
+});
+
+///////////////////////////////
+// LISTENER
+////////////////////////////////
+app.listen(PORT, () => console.log(`listening on PORT ${PORT}`));
 ```
 
-Examine the console.log and see how the response is given back.
+- Make sure you see the Mongoose Connection message when the server restarts
 
-Let's use two copies
+## Adding the People Model
 
-```js
-import Counter from "./components/counter";
-import Request from "./components/request";
-
-function App(props) {
-  return (
-    <div>
-      <Counter />
-      <Counter />
-      <Request/>
-      <Request/>
-    </div>
-  );
-}
-
-export default App;
-```
-
-Notice that even though we used the component twice, the console.logs don't increase. This is cause both components are altering the data from the same place kinda like we saw in recoil.
-
-### What's in the response
-
-The main things of note in the response object
-
-- data: the data from the api call
-- isLoading: a boolean on whether the call is still pending, can be used to return loading JSX
-- isError: a boolean on whether the call has failed to return error JSX
-- refetch: a function to repeat the call and update the data for everywhere it is used
-- error: the error if there is one
-
-## Bonus - Custom Hooks
-
-### Custom Hooks for react-query
-
-To make it even easier to refer to the same api call in multiple components, you can build custom hooks to avoid typing the same query function key and function over and over agian. Make a file src/queryhooks.js.
-
-queryhooks.js
+Let's add a People model to server.js along with an index and create route to see and create our people. Make sure to add cors and express.json middleware!
 
 ```js
-import { useQuery } from "react-query";
+///////////////////////////////
+// DEPENDENCIES
+////////////////////////////////
+// get .env variables
+require("dotenv").config();
+// pull PORT from .env, give default value of 3000
+// pull MONGODB_URL from .env
+const { PORT = 3000, MONGODB_URL } = process.env;
+// import express
+const express = require("express");
+// create application object
+const app = express();
+// import mongoose
+const mongoose = require("mongoose");
+// import middlware
+const cors = require("cors");
+const morgan = require("morgan");
 
-// api request custom hook
-export const useJsonPlaceholder = () => {
-    // make api call and save response
-    const response = useQuery("myQuery", async () => {
-    const r = await fetch("https://jsonplaceholder.typicode.com/todos/1");
-    return r.json();
-  });
-  // return response
-  return response
-};
-```
+///////////////////////////////
+// DATABASE CONNECTION
+////////////////////////////////
+// Establish Connection
+mongoose.connect(MONGODB_URL, {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+});
+// Connection Events
+mongoose.connection
+  .on("open", () => console.log("Your are connected to mongoose"))
+  .on("close", () => console.log("Your are disconnected from mongoose"))
+  .on("error", (error) => console.log(error));
 
-now we can use this custom hook instead of typing out that entire useQuery again.
+///////////////////////////////
+// MODELS
+////////////////////////////////
+const PeopleSchema = new mongoose.Schema({
+  name: String,
+  image: String,
+  title: String,
+});
 
-src/components/request.js
+const People = mongoose.model("People", PeopleSchema);
 
-```js
-import { useJsonPlaceholder } from "../hooks";
+///////////////////////////////
+// MiddleWare
+////////////////////////////////
+app.use(cors()); // to prevent cors errors, open access to all origins
+app.use(morgan("dev")); // logging
+app.use(express.json()); // parse json bodies
 
-function Request() {
-  // make our query
+///////////////////////////////
+// ROUTES
+////////////////////////////////
+// create a test route
+app.get("/", (req, res) => {
+  res.send("hello world");
+});
 
-  const response = useJsonPlaceholder()
-
-  console.log(response);
-
-  return <h1>Request</h1>;
-}
-
-export default Request;
-```
-
-Also, let's destructure some of those response properties and show how we can render the component conditionally.
-
-```js
-import { useJsonPlaceholder } from "../hooks";
-
-function Request() {
-  // make our query
-
-  const { data, isError, isLoading, refetch } = useJsonPlaceholder();
-
-  // JSX for ERROR
-  if (isError) {
-    return (
-      <div>
-        <h1>Request Failed</h1>
-        <button onClick={() => refetch()}>Try Again</button>
-      </div>
-    );
+// PEOPLE INDEX ROUTE
+app.get("/people", async (req, res) => {
+  try {
+    // send all people
+    res.json(await People.find({}));
+  } catch (error) {
+    //send error
+    res.status(400).json(error);
   }
+});
 
-  // JSX for Loading
-  if (isLoading) {
-    return (
-      <div>
-        <h1>Loading</h1>
-        <button onClick={() => refetch()}>Try Again</button>
-      </div>
-    );
+// PEOPLE CREATE ROUTE
+app.post("/people", async (req, res) => {
+  try {
+    // send all people
+    res.json(await People.create(req.body));
+  } catch (error) {
+    //send error
+    res.status(400).json(error);
   }
+});
 
-  // JSX for API Call Complete
-  return (
-    <div>
-      <h1>Request Succeded</h1>
-      <ul>
-        {Object.keys(data).map((key) => (
-          <li>
-            {key}: {data[key]}
-          </li>
-        ))}
-      </ul>
-      <button onClick={() => refetch()}>Try Again</button>
-    </div>
-  );
-}
-
-export default Request;
+///////////////////////////////
+// LISTENER
+////////////////////////////////
+app.listen(PORT, () => console.log(`listening on PORT ${PORT}`));
 ```
 
-### custom hooks for recoil
+- create 3 people using postman to make post requests to /people
 
-For our atoms we can just make our custom hooks when we declare them, like so.
+- test the index route with a get request to /people
 
-atom.js
+## Update and Delete
+
+Let's add an Update and Delete API Route to server.js
 
 ```js
-import { atom, useRecoilState } from "recoil";
+///////////////////////////////
+// DEPENDENCIES
+////////////////////////////////
+// get .env variables
+require("dotenv").config();
+// pull PORT from .env, give default value of 3000
+// pull MONGODB_URL from .env
+const { PORT = 3000, MONGODB_URL } = process.env;
+// import express
+const express = require("express");
+// create application object
+const app = express();
+// import mongoose
+const mongoose = require("mongoose");
+// import middlware
+const cors = require("cors");
+const morgan = require("morgan");
 
-// declare and export an atom
-const counterState = atom({
-    // the key is used to track the state internally in recoil
-    key: 'counterState',
-    // default value is the value if not other value exists, the starting value essentially
-    default: 0
-})
+///////////////////////////////
+// DATABASE CONNECTION
+////////////////////////////////
+// Establish Connection
+mongoose.connect(MONGODB_URL, {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+});
+// Connection Events
+mongoose.connection
+  .on("open", () => console.log("Your are connected to mongoose"))
+  .on("close", () => console.log("Your are disconnected from mongoose"))
+  .on("error", (error) => console.log(error));
 
-// declare custom hook for the using the atom
-export const useCounterState = () => {
-    return useRecoilState(counterState)
-}
+///////////////////////////////
+// MODELS
+////////////////////////////////
+const PeopleSchema = new mongoose.Schema({
+  name: String,
+  image: String,
+  title: String,
+});
 
+const People = mongoose.model("People", PeopleSchema);
+
+///////////////////////////////
+// MiddleWare
+////////////////////////////////
+app.use(cors()); // to prevent cors errors, open access to all origins
+app.use(morgan("dev")); // logging
+app.use(express.json()); // parse json bodies
+
+///////////////////////////////
+// ROUTES
+////////////////////////////////
+// create a test route
+app.get("/", (req, res) => {
+  res.send("hello world");
+});
+
+// PEOPLE INDEX ROUTE
+app.get("/people", async (req, res) => {
+  try {
+    // send all people
+    res.json(await People.find({}));
+  } catch (error) {
+    //send error
+    res.status(400).json(error);
+  }
+});
+
+// PEOPLE CREATE ROUTE
+app.post("/people", async (req, res) => {
+  try {
+    // send all people
+    res.json(await People.create(req.body));
+  } catch (error) {
+    //send error
+    res.status(400).json(error);
+  }
+});
+
+// PEOPLE CREATE ROUTE
+app.put("/people/:id", async (req, res) => {
+  try {
+    // send all people
+    res.json(
+      await People.findByIdAndUpdate(req.params.id, req.body, { new: true })
+    );
+  } catch (error) {
+    //send error
+    res.status(400).json(error);
+  }
+});
+
+// PEOPLE CREATE ROUTE
+app.delete("/people/:id", async (req, res) => {
+  try {
+    // send all people
+    res.json(await People.findByIdAndRemove(req.params.id));
+  } catch (error) {
+    //send error
+    res.status(400).json(error);
+  }
+});
+
+///////////////////////////////
+// LISTENER
+////////////////////////////////
+app.listen(PORT, () => console.log(`listening on PORT ${PORT}`));
 ```
 
-Now we don't have to import useRecoilState and the atom, we can just import the custom hook in any components that use that state.
+## Deploy
 
-counter.js
+- create a git repo in the `backend` folder `git init`
 
-```js
-import { useCounterState } from "../atom";
+- add all files to staging `git add .`
 
-function Counter(props) {
-  // bring in the state from the atom
-  const [counter, setCounter] = useCounterState()
+- commit `git commit -m "message"`
 
-  return (
-    <div>
-      <h1>{counter}</h1>
-      <button onClick={() => setCounter(counter + 1)}>Add</button>
-    </div>
-  );
-}
+- create a new repo on github.com (make sure its empty and public)
 
-export default Counter;
+- add the remote to your local repo `git remote add origin URL` replate URL with your repos url
+
+- push up your code `git push origin branchName` replace branch name with your active branch, find that with `git branch`
+
+- go to heroku and create a new project
+
+- under deploy connect your repo, enable auto deploys, and trigger a manual deploy
+
+- under settings set your MONGO_URL config var
+
+- in postman test all your API endpoints
+
+## Lab Part 1 - Cheese App
+
+- create another folder called "Cheese App"
+
+- create a backend and frontend folder like you did for today's lesson
+
+- create a cheese API with index, create, update and delete routes
+
+- the model should look like
+
+```
+name: String,
+countryOfOrigin: String,
+image: String
 ```
 
-The great thing about customhooks it lets us clean up our code and make reusing state across our app so much easier!
-
-## Non-Deliverable Lab
-
-Try to take the build you created last week and refactor it using react-query and/or recoil.
-
-I highly recommend making these changes on a branch so you keep your original code. Commit what you have already and then run the command `git checkout -b refactor` to work from a branch called refactor. While on this branch push your code using `git push origin refactor`. 
-
-- you can switch branches at anytime with `git checkout BRANCH_NAME`
-- you can see what your current list of branches with the command of `git branch`
+- Test the API, deploy the API, test the deployed API

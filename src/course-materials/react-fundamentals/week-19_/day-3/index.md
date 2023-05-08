@@ -1,10 +1,10 @@
 ---
 track: "React Fundamentals"
 title: "Day 3"
-week: 18
+week: 19
 day: 3
 type: "homepage"
-topics: "Holiday - Memorial Day Weekend"
+topics: "Presentations"
 ---
 
-# Project week
+# Project Presentations

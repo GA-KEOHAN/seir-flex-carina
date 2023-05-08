@@ -1,451 +1,387 @@
-# People Build, Show, Edit and Delete
+## Express React Build
 
-## Links to Show Page
+In this build we will
 
-Right now the link to each show page doesn't work, let's fix that!
+- Build an Express API
+- Use Mongo/Mongoose with 1 model
+- Build a Full Crud Frontend with React
+- Deploy with Netlify
 
-## The Show Page
+## Setup for Express Build
 
-First step is we need a loader for the the show route, let's add it to `loaders.js`
+- Create a folder called express-react
+- Inside this folder create another folder called backend
+- Generate a React app called frontend `npx create-react-app frontend`
 
-```js
-const URL = "http://localhost:4000"
+Your folder structure should look like this...
 
-export const peopleLoader =  async() => {
-    const response = await fetch(URL + "/people")
-    const people = await response.json()
-    return people
-}
-
-export const personLoader = async ({params}) => {
-    const response = await fetch(URL + "/people/" + params.id )
-    const person = await response.json()
-    return person
-}
+```
+/express-react
+ -> /backend
+ -> /frontend
 ```
 
-Let's attach the loader to the route in router.js
+- cd into `backend` folder
 
-```js
-import {createBrowserRouter, createRoutesFromElements, Route} from "react-router-dom"
-import App from "./App"
-import Index from "./pages/Index"
-import Show from "./pages/Show"
-import { peopleLoader, personLoader } from "./loaders"
-import { createAction } from "./actions"
+## Setting up the Express app
 
-const router = createBrowserRouter(createRoutesFromElements(
-    <Route path="/" element={<App/>}>
-        <Route path="" element={<Index/>} loader={peopleLoader}/>
-        <Route path=":id" element={<Show/>} loader={personLoader}/>
-        <Route path="create" action={createAction}/>
-        <Route path="update/:id"/>
-        <Route path="delete/:id"/>
-    </Route>
-))
-
-export default router
-```
-
-Now let's build out our Show.js
-
-
-```js
-import { useLoaderData } from "react-router-dom"
-
-function Show(props) {
-    const person = useLoaderData()
-  
-    return (
-      <div className="person">
-        <h1>{person.name}</h1>
-        <h2>{person.title}</h2>
-        <img src={person.image} alt={person.name} />
-      </div>
-    )
-  }
-  
-  export default Show
-```
-
-## Updating a Person
-
-On the show page let's add
-
-- add a router Form
-
-- create an action for when the Form submits to `/update/:id`
-
-- attach the action to the right route
-
-```js
-import { useLoaderData, Form } from "react-router-dom";
-
-function Show(props) {
-  const person = useLoaderData();
-
-  return (
-    <div className="person">
-      <h1>{person.name}</h1>
-      <h2>{person.title}</h2>
-      <img src={person.image} alt={person.name} />
-
-      <h2>Update {person.name}</h2>
-      <Form action={`/update/${person._id}`} method="post">
-        <input type="input" name="name" placeholder="person's name" />
-        <input type="input" name="image" placeholder="person's picture" />
-        <input type="input" name="title" placeholder="person's title" />
-        <input type="submit" value={`update ${person.name}`} />
-      </Form>
-    </div>
-  );
-}
-
-export default Show;
-```
-
-Now let's add an action to handle the update to actions.js
-
-```js
-import { redirect } from "react-router-dom"
-
-const URL = "http://localhost:4000"
-
-export const createAction = async ({request}) => {
-    // get data from form
-    const formData = await request.formData()
-    // set up our new person to match schema
-    const newPerson = {
-        name: formData.get("name"),
-        image: formData.get("image"),
-        title: formData.get("title")
-    }
-    // Send new person to our API
-    await fetch(URL + "/people", {
-        method: "post",
-        headers: {
-            "Content-Type":"application/json"
-        },
-        body: JSON.stringify(newPerson)
-    })
-    // redirect to index
-    return redirect("/")
-}
-
-export const updateAction = async ({request, params}) => {
-    // get data from form
-    const formData = await request.formData()
-    // set up our new person to match schema
-    const updatedPerson = {
-        name: formData.get("name"),
-        image: formData.get("image"),
-        title: formData.get("title")
-    }
-    // Send new person to our API
-    await fetch(URL + "/people/" + params.id, {
-        method: "put",
-        headers: {
-            "Content-Type":"application/json"
-        },
-        body: JSON.stringify(updatedPerson)
-    })
-    // redirect to index
-    return redirect("/")
-}
-```
-
-Now we just add that action to right route and we're good to go!
-
-router.js
-```js
-import {createBrowserRouter, createRoutesFromElements, Route} from "react-router-dom"
-import App from "./App"
-import Index from "./pages/Index"
-import Show from "./pages/Show"
-import { peopleLoader, personLoader } from "./loaders"
-import { createAction, updateAction } from "./actions"
-
-const router = createBrowserRouter(createRoutesFromElements(
-    <Route path="/" element={<App/>}>
-        <Route path="" element={<Index/>} loader={peopleLoader}/>
-        <Route path=":id" element={<Show/>} loader={personLoader}/>
-        <Route path="create" action={createAction}/>
-        <Route path="update/:id" action={updateAction}/>
-        <Route path="delete/:id"/>
-    </Route>
-))
-
-export default router
-```
-
-## Deleting a Person
-
-All we have to do is add a delete button now, and we can do that using a Form and following the same pattern.
-
-- Add Form
-- Add Action
-- Connect Action to Route
-
-```js
-import { useLoaderData, Form } from "react-router-dom";
-
-function Show(props) {
-  const person = useLoaderData();
-
-  return (
-    <div className="person">
-      <h1>{person.name}</h1>
-      <h2>{person.title}</h2>
-      <img src={person.image} alt={person.name} />
-
-      <h2>Update {person.name}</h2>
-      <Form action={`/update/${person._id}`} method="post">
-        <input type="input" name="name" placeholder="person's name" defaultValue={person.name}/>
-        <input type="input" name="image" placeholder="person's picture" defaultValue={person.image}/>
-        <input type="input" name="title" placeholder="person's title" defaultValue={person.title} />
-        <input type="submit" value={`update ${person.name}`} />
-      </Form>
-      <h2>Delete Person</h2>
-      <Form action={`/delete/${person._id}`} method="post">
-      <input type="submit" value={`delete ${person.name}`} />
-      </Form>
-    </div>
-  );
-}
-
-export default Show;
-```
-
-Create our action in action.js
-
-```js
-import { redirect } from "react-router-dom"
-
-const URL = "http://localhost:4000"
-
-export const createAction = async ({request}) => {
-    // get data from form
-    const formData = await request.formData()
-    // set up our new person to match schema
-    const newPerson = {
-        name: formData.get("name"),
-        image: formData.get("image"),
-        title: formData.get("title")
-    }
-    // Send new person to our API
-    await fetch(URL + "/people", {
-        method: "post",
-        headers: {
-            "Content-Type":"application/json"
-        },
-        body: JSON.stringify(newPerson)
-    })
-    // redirect to index
-    return redirect("/")
-}
-
-export const updateAction = async ({request, params}) => {
-    // get data from form
-    const formData = await request.formData()
-    // set up our new person to match schema
-    const updatedPerson = {
-        name: formData.get("name"),
-        image: formData.get("image"),
-        title: formData.get("title")
-    }
-    // Send updated person to our API
-    await fetch(URL + "/people/" + params.id, {
-        method: "put",
-        headers: {
-            "Content-Type":"application/json"
-        },
-        body: JSON.stringify(updatedPerson)
-    })
-    // redirect to index
-    return redirect("/")
-}
-
-export const deleteAction = async ({params}) => {
-    // delete person with our API
-    await fetch(URL + "/people/" + params.id, {
-        method: "delete"
-    })
-    // redirect to index
-    return redirect("/")
-}
-```
-
-Attach the action to our `delete/:id` route
-
-router.js
-```js
-import {createBrowserRouter, createRoutesFromElements, Route} from "react-router-dom"
-import App from "./App"
-import Index from "./pages/Index"
-import Show from "./pages/Show"
-import { peopleLoader, personLoader } from "./loaders"
-import { createAction, updateAction, deleteAction } from "./actions"
-
-const router = createBrowserRouter(createRoutesFromElements(
-    <Route path="/" element={<App/>}>
-        <Route path="" element={<Index/>} loader={peopleLoader}/>
-        <Route path=":id" element={<Show/>} loader={personLoader}/>
-        <Route path="create" action={createAction}/>
-        <Route path="update/:id" action={updateAction}/>
-        <Route path="delete/:id" action={deleteAction}/>
-    </Route>
-))
-
-export default router
-```
-
-CRUD functionality should be complete
-
-## Some Final Styling
-
-A few more changes to our styles.scss
-
-```scss
-// --------------------------
-// VARIABLES
-// --------------------------
-$maincolor: black;
-$contrastcolor: white;
-
-@mixin white-text-black-bg {
-  color: $contrastcolor;
-  background-color: $maincolor;
-}
-
-@mixin black-test-white-bg {
-  color: $maincolor;
-  background-color: $contrastcolor;
-}
-
-// --------------------------
-// Header
-// --------------------------
-
-nav {
-  @include white-text-black-bg;
-  display: flex;
-  justify-content: flex-start;
-
-  a {
-    @include white-text-black-bg;
-    div {
-      margin: 10px;
-      font-size: large;
-    }
-  }
-}
-
-// --------------------------
-// Form
-// --------------------------
-
-section,
-div {
-  form {
-    input {
-      @include white-text-black-bg;
-      padding: 10px;
-      font-size: 1.1em;
-      margin: 10px;
-
-      &[type="submit"]:hover {
-        @include black-test-white-bg;
-      }
-    }
-  }
-}
-
-// --------------------------
-// button
-// --------------------------
-
-button#delete {
-  @include white-text-black-bg;
-  display: block;
-  margin: auto;
-  font-size: 1.3em;
-  padding: 10px;
-}
-
-// --------------------------
-// images
-// --------------------------
-
-img {
-  width: 300px;
-  height: 300px;
-  border-radius: 90px;
-  object-fit: cover;
-}
-```
-
-Just make sure the URL in your actions.js and loaders.js is your deployed API URL.
-
-## Configuring Redirects for React Router
-
-Since we are using React Router which aren't real routes, a user may refresh a page and get an error so we need to make sure our host will redirect requests to any other url back to our application.
-
-#### 2 Ways to do this for Netlify.com
-
-- add a netlify.toml with the following
-
-```toml
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-```
-
-- or add a file called `_redirects` in the public folder with the following:
-```
-/*  /index.html   200
-```
-#### 1 Way to do this for Vercel
-
-_NOTE, if you wanted to deploy to Vercel you'd include a vercel.json with the following_
+- create a new node project `npm init -y`
+- install dependencies `npm install dotenv mongoose express cors morgan`
+- install dev dependencies `npm install --save-dev nodemon`
+- setup npm scripts
 
 ```json
-{
-  "version": 2,
-  "routes": [
-    { "handle": "filesystem" },
-    { "src": "/.*", "dest": "/index.html" }
-  ]
+"scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
 }
 ```
 
-#### 1 Way for Render
+- make files `touch .env .gitignore server.js`
 
-For render you have to deploy first then in your project settings there is a section for setting up redirects. Setup a redirect with the following rule:
+- put the following .gitignore
+
 ```
-source: /*
-destination: /index.html
-```
-
-## Deployment Steps
-
-- push frontend repo to github
-
-- connect repo to netlify/vercel/render (for render deploy a static app, not a web service)
-
-just in case
-```
-build command: npm run build
-publish folder: build
+/node_modules
+.env
 ```
 
-- done
+- put the following in .env (make sure to use YOUR mongodb.com uri)
 
-**[FINISHED CODE FOR REFERENCE](https://github.com/AlexMercedCoder/peoplereactexpressbuildcode)**
+```
+MONGODB_URL=mongodb+src://...
+PORT=4000
+```
 
-## Lab - Complete Your Cheese App
+## Starting Server.js
 
-Complete your cheese app using the steps of todays lessons adding the following:
+Let's build out the minimum to get server.js up and running
 
-- the ability see an individual cheese
-- the ability edit a cheese
-- the ability to delete a cheese
+```js
+///////////////////////////////
+// DEPENDENCIES
+////////////////////////////////
+// get .env variables
+require("dotenv").config();
+// pull PORT from .env, give default value of 3000
+const { PORT = 3000 } = process.env;
+// import express
+const express = require("express");
+// create application object
+const app = express();
+
+///////////////////////////////
+// ROUTES
+////////////////////////////////
+// create a test route
+app.get("/", (req, res) => {
+  res.send("hello world");
+});
+
+///////////////////////////////
+// LISTENER
+////////////////////////////////
+app.listen(PORT, () => console.log(`listening on PORT ${PORT}`));
+```
+
+- run the server `npm run dev` and make sure you see "Hello World" when you go to `localhost:4000`
+
+## Adding a Database Connection
+
+Let's update our server.js to include a database connection
+
+```js
+///////////////////////////////
+// DEPENDENCIES
+////////////////////////////////
+// get .env variables
+require("dotenv").config();
+// pull PORT from .env, give default value of 3000
+// pull MONGODB_URL from .env
+const { PORT = 3000, MONGODB_URL } = process.env;
+// import express
+const express = require("express");
+// create application object
+const app = express();
+// import mongoose
+const mongoose = require("mongoose");
+
+///////////////////////////////
+// DATABASE CONNECTION
+////////////////////////////////
+// Establish Connection
+mongoose.connect(MONGODB_URL, {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+});
+// Connection Events
+mongoose.connection
+  .on("open", () => console.log("Your are connected to mongoose"))
+  .on("close", () => console.log("Your are disconnected from mongoose"))
+  .on("error", (error) => console.log(error));
+
+///////////////////////////////
+// ROUTES
+////////////////////////////////
+// create a test route
+app.get("/", (req, res) => {
+  res.send("hello world");
+});
+
+///////////////////////////////
+// LISTENER
+////////////////////////////////
+app.listen(PORT, () => console.log(`listening on PORT ${PORT}`));
+```
+
+- Make sure you see the Mongoose Connection message when the server restarts
+
+## Adding the People Model
+
+Let's add a People model to server.js along with an index and create route to see and create our people. Make sure to add cors and express.json middleware!
+
+```js
+///////////////////////////////
+// DEPENDENCIES
+////////////////////////////////
+// get .env variables
+require("dotenv").config();
+// pull PORT from .env, give default value of 3000
+// pull MONGODB_URL from .env
+const { PORT = 3000, MONGODB_URL } = process.env;
+// import express
+const express = require("express");
+// create application object
+const app = express();
+// import mongoose
+const mongoose = require("mongoose");
+// import middlware
+const cors = require("cors");
+const morgan = require("morgan");
+
+///////////////////////////////
+// DATABASE CONNECTION
+////////////////////////////////
+// Establish Connection
+mongoose.connect(MONGODB_URL, {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+});
+// Connection Events
+mongoose.connection
+  .on("open", () => console.log("Your are connected to mongoose"))
+  .on("close", () => console.log("Your are disconnected from mongoose"))
+  .on("error", (error) => console.log(error));
+
+///////////////////////////////
+// MODELS
+////////////////////////////////
+const PeopleSchema = new mongoose.Schema({
+  name: String,
+  image: String,
+  title: String,
+});
+
+const People = mongoose.model("People", PeopleSchema);
+
+///////////////////////////////
+// MiddleWare
+////////////////////////////////
+app.use(cors()); // to prevent cors errors, open access to all origins
+app.use(morgan("dev")); // logging
+app.use(express.json()); // parse json bodies
+
+///////////////////////////////
+// ROUTES
+////////////////////////////////
+// create a test route
+app.get("/", (req, res) => {
+  res.send("hello world");
+});
+
+// PEOPLE INDEX ROUTE
+app.get("/people", async (req, res) => {
+  try {
+    // send all people
+    res.json(await People.find({}));
+  } catch (error) {
+    //send error
+    res.status(400).json(error);
+  }
+});
+
+// PEOPLE CREATE ROUTE
+app.post("/people", async (req, res) => {
+  try {
+    // send all people
+    res.json(await People.create(req.body));
+  } catch (error) {
+    //send error
+    res.status(400).json(error);
+  }
+});
+
+///////////////////////////////
+// LISTENER
+////////////////////////////////
+app.listen(PORT, () => console.log(`listening on PORT ${PORT}`));
+```
+
+- create 3 people using postman to make post requests to /people
+
+- test the index route with a get request to /people
+
+## Update and Delete
+
+Let's add an Update and Delete API Route to server.js
+
+```js
+///////////////////////////////
+// DEPENDENCIES
+////////////////////////////////
+// get .env variables
+require("dotenv").config();
+// pull PORT from .env, give default value of 3000
+// pull MONGODB_URL from .env
+const { PORT = 3000, MONGODB_URL } = process.env;
+// import express
+const express = require("express");
+// create application object
+const app = express();
+// import mongoose
+const mongoose = require("mongoose");
+// import middlware
+const cors = require("cors");
+const morgan = require("morgan");
+
+///////////////////////////////
+// DATABASE CONNECTION
+////////////////////////////////
+// Establish Connection
+mongoose.connect(MONGODB_URL, {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+});
+// Connection Events
+mongoose.connection
+  .on("open", () => console.log("Your are connected to mongoose"))
+  .on("close", () => console.log("Your are disconnected from mongoose"))
+  .on("error", (error) => console.log(error));
+
+///////////////////////////////
+// MODELS
+////////////////////////////////
+const PeopleSchema = new mongoose.Schema({
+  name: String,
+  image: String,
+  title: String,
+});
+
+const People = mongoose.model("People", PeopleSchema);
+
+///////////////////////////////
+// MiddleWare
+////////////////////////////////
+app.use(cors()); // to prevent cors errors, open access to all origins
+app.use(morgan("dev")); // logging
+app.use(express.json()); // parse json bodies
+
+///////////////////////////////
+// ROUTES
+////////////////////////////////
+// create a test route
+app.get("/", (req, res) => {
+  res.send("hello world");
+});
+
+// PEOPLE INDEX ROUTE
+app.get("/people", async (req, res) => {
+  try {
+    // send all people
+    res.json(await People.find({}));
+  } catch (error) {
+    //send error
+    res.status(400).json(error);
+  }
+});
+
+// PEOPLE CREATE ROUTE
+app.post("/people", async (req, res) => {
+  try {
+    // send all people
+    res.json(await People.create(req.body));
+  } catch (error) {
+    //send error
+    res.status(400).json(error);
+  }
+});
+
+// PEOPLE CREATE ROUTE
+app.put("/people/:id", async (req, res) => {
+  try {
+    // send all people
+    res.json(
+      await People.findByIdAndUpdate(req.params.id, req.body, { new: true })
+    );
+  } catch (error) {
+    //send error
+    res.status(400).json(error);
+  }
+});
+
+// PEOPLE CREATE ROUTE
+app.delete("/people/:id", async (req, res) => {
+  try {
+    // send all people
+    res.json(await People.findByIdAndRemove(req.params.id));
+  } catch (error) {
+    //send error
+    res.status(400).json(error);
+  }
+});
+
+///////////////////////////////
+// LISTENER
+////////////////////////////////
+app.listen(PORT, () => console.log(`listening on PORT ${PORT}`));
+```
+
+## Deploy
+
+- create a git repo in the `backend` folder `git init`
+
+- add all files to staging `git add .`
+
+- commit `git commit -m "message"`
+
+- create a new repo on github.com (make sure its empty and public)
+
+- add the remote to your local repo `git remote add origin URL` replate URL with your repos url
+
+- push up your code `git push origin branchName` replace branch name with your active branch, find that with `git branch`
+
+- deploy the project with render
+
+- under deploy connect your repo, enable auto deploys, and trigger a manual deploy
+
+- under settings set your MONGO_URL config var
+
+- in postman test all your API endpoints
+
+## Lab Part 1 - Cheese App
+
+- create another folder called "Cheese App"
+
+- create a backend and frontend folder like you did for today's lesson
+
+- create a cheese API with index, create, update and delete routes
+
+- the model should look like
+
+```
+name: String,
+countryOfOrigin: String,
+image: String
+```
+
+- Test the API, deploy the API, test the deployed API

@@ -4,11 +4,20 @@ title: "Day 2"
 week: 14
 day: 2
 type: "homepage"
-topics: "React Router"
+topics: "React State and Props"
 ---
 
-#### Intro to React
-<!-- - [**Lecture: Bitcoin Router Build (Using Router Version 6.4 with new Data Routers)**](/react-fundamentals/week-14/day-2/lecture/router64) -->
-- [**Lecture: Bitcoin Router Build (Using Router Version 6)**](/react-fundamentals/week-14/day-2/lecture/router)
-<!-- - [**Lecture: Bitcoin Router Build (Using Router Version 5)**](/react-fundamentals/week-14/day-2/lecture/) -->
-- [**Lab: Router Lab - Non Deliverable**](https://github.com/seir-flex/react-audubon-site-lab)
+## Lectures
+- [**Lecture: Intro to Props**](/react-fundamentals/week-13/day-2/lecture/passing-props)
+- [**Lecture: Intro to State**](/react-fundamentals/week-13/day-2/lecture/intro-to-state)
+
+**DELIVERABLE**
+## Labs
+- [**Lab/Homework: Recreating WeatherForecast in React - DELIVERABLE**](/react-fundamentals/week-13/day-2/lab/props-lab)
+- [**Lab/Homework: State Lab**](/react-fundamentals/week-13/day-2/lab/state-lab)
+
+
+<!-- topics: "Forms in React - Controlled & Uncontrolled" -->
+---
+
+ 
