@@ -10,8 +10,8 @@ export default({ data, location }) => {
     
    const { allMarkdownRemark } = data;
 
-   const weekThirteenLessons = allMarkdownRemark.edges.filter(({ node }) => 
-   node.frontmatter.week === 13
+   const weekFourteenLessons = allMarkdownRemark.edges.filter(({ node }) => 
+   node.frontmatter.week === 14
  ).map(({ node }) =>
    <Link to={node.fields.slug}>
      <h2 className={styles.dayTitle} key={node.fields.id}>{node.frontmatter.title}<small className={styles.smallText}> - {node.frontmatter.topics}</small></h2>
@@ -19,8 +19,8 @@ export default({ data, location }) => {
  );
      
 
-    const weekFourteenLessons = allMarkdownRemark.edges.filter(({ node }) => 
-        node.frontmatter.week === 14
+    const weekFifteenLessons = allMarkdownRemark.edges.filter(({ node }) => 
+        node.frontmatter.week === 15
       ).map(({ node }) =>
         <Link to={node.fields.slug}>
           <h2 className={styles.dayTitle} key={node.fields.id}>{node.frontmatter.title}<small className={styles.smallText}> - {node.frontmatter.topics}</small></h2>
@@ -28,14 +28,6 @@ export default({ data, location }) => {
       );
 
       
-      const weekFifteenLessons = allMarkdownRemark.edges.filter(({ node }) => 
-      node.frontmatter.week === 15
-      ).map(({ node }) =>
-        <Link to={node.fields.slug}>
-          <h2 className={styles.dayTitle} key={node.fields.id}>{node.frontmatter.title}<small className={styles.smallText}> - {node.frontmatter.topics}</small></h2>
-        </Link> 
-      );
-
       const weekSixteenLessons = allMarkdownRemark.edges.filter(({ node }) => 
       node.frontmatter.week === 16
       ).map(({ node }) =>
@@ -51,22 +43,16 @@ export default({ data, location }) => {
           <h2 className={styles.dayTitle} key={node.fields.id}>{node.frontmatter.title}<small className={styles.smallText}> - {node.frontmatter.topics}</small></h2>
         </Link> 
       );
-    
-      const weekEighteenLessons = allMarkdownRemark.edges
-        .filter(({ node }) => node.frontmatter.week === 18)
-        .map(({ node }) => (
-          <Link to={node.fields.slug}>
-            <h2 className={styles.dayTitle} key={node.fields.id}>
-              {node.frontmatter.title}
-              <small className={styles.smallText}>
-                {" "}
-                - {node.frontmatter.topics}
-              </small>
-            </h2>
-          </Link>
-        ))
 
-        const weekNineteenLessons = allMarkdownRemark.edges
+      const weekEighteenLessons = allMarkdownRemark.edges.filter(({ node }) => 
+      node.frontmatter.week === 18
+      ).map(({ node }) =>
+        <Link to={node.fields.slug}>
+          <h2 className={styles.dayTitle} key={node.fields.id}>{node.frontmatter.title}<small className={styles.smallText}> - {node.frontmatter.topics}</small></h2>
+        </Link> 
+      );
+    
+      const weekNineteenLessons = allMarkdownRemark.edges
         .filter(({ node }) => node.frontmatter.week === 19)
         .map(({ node }) => (
           <Link to={node.fields.slug}>
@@ -79,6 +65,20 @@ export default({ data, location }) => {
             </h2>
           </Link>
         ))
+
+        // const weekTwentyLessons= allMarkdownRemark.edges
+        // .filter(({ node }) => node.frontmatter.week === 20)
+        // .map(({ node }) => (
+        //   <Link to={node.fields.slug}>
+        //     <h2 className={styles.dayTitle} key={node.fields.id}>
+        //       {node.frontmatter.title}
+        //       <small className={styles.smallText}>
+        //         {" "}
+        //         - {node.frontmatter.topics}
+        //       </small>
+        //     </h2>
+        //   </Link>
+        // ))
       
 
     return (
@@ -116,7 +116,7 @@ export default({ data, location }) => {
               <br />
               <h2>Week 18</h2>  
               { weekEighteenLessons }
-              <br />
+               <br />
               <hr />
               <br />
               <h2>Week 19 - Project Week</h2>  

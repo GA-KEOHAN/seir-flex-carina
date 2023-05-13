@@ -4,7 +4,7 @@ title: "Day 3"
 week: 18
 day: 3
 type: "homepage"
-topics: "Project Week"
+topics: "Intro To Python"
 ---
 
-# Project week
+# Intro To Python

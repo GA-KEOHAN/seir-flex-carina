@@ -4,7 +4,7 @@ title: "Day 2"
 week: 18
 day: 2
 type: "homepage"
-topics: "Project Week"
+topics: "Project Presentations"
 ---
 
-# Project week
+# Project Presentations

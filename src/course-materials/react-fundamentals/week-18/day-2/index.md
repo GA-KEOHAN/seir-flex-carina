@@ -7,4 +7,4 @@ type: "homepage"
 topics: "Project Week"
 ---
 
-# Project week
+# Project Week
