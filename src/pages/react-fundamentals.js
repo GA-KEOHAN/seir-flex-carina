@@ -89,11 +89,11 @@ export default({ data, location }) => {
           crumbLabel={"React Fundamentals"}>
             <h1>React Fundamentals</h1>
             <main>
-            <h2>Week 13</h2>  
+            {/* <h2>Week 13</h2>  
               { weekThirteenLessons }
               <br />
               <hr />
-              <br />
+              <br /> */}
               <h2>Week 14</h2>  
               { weekFourteenLessons }
               <br />
