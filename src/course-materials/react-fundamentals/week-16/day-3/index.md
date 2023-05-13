@@ -4,7 +4,7 @@ title: "Day 3"
 week: 16
 day: 3
 type: "homepage"
-topics: "Bonus Lecture - TBD"
+topics: "Project 3 Kickoff"
 ---
 
 <!-- - [**Build & Lab Part 3**](/react-fundamentals/week-15/day-3/lecture/) -->

@@ -9,6 +9,6 @@ topics: "Express & React Build - Part 1"
 
 #### Creating a JSON API in Express
 <!-- - [**Lecture: Creating a JSON API in Express**](/react-fundamentals/week-14/day-3/lecture/json-api) -->
-- [**Part 1 - Creating a JSON API in Express****](/react-fundamentals/week-14/day-3/lecture/)
+- [**Part 1 - Creating a JSON API in Express****](/react-fundamentals/week-15/day-3/lecture/)
 
-- [**Homework: Build A Portfolio**](/react-fundamentals/week-14/day-3/lab/portfolio) - **DELIVERABLE**
+- [**Homework: Build A Portfolio**](/react-fundamentals/week-15/day-3/lab/portfolio) - **DELIVERABLE**

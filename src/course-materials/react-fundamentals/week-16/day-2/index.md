@@ -7,4 +7,4 @@ type: "homepage"
 topics: "Express & React Build - Part 3 - Show/Update/Delete"
 ---
 
-- [**Build & Lab Part 3**](/react-fundamentals/week-15/day-3/lecture/)
+- [**Build & Lab Part 3**](/react-fundamentals/week-16/day-3/lecture/)

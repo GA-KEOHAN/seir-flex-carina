@@ -11,5 +11,5 @@ topics: "The useEffect Hook and Fetch"
 ---
 
 #### Intro to React
-- [**Lecture: OMDBApp Build**](/react-fundamentals/week-14/day-1/lecture/index-movie) 
-- [**Lab: Giphy Lab - Deliverable**](/react-fundamentals/week-14/day-1/lab/index-giphy) 
+- [**Lecture: OMDBApp Build**](/react-fundamentals/week-15/day-1/lecture/index-movie) 
+- [**Lab: Giphy Lab - Deliverable**](/react-fundamentals/week-15/day-1/lab/index-giphy) 

@@ -83,10 +83,9 @@ All material is subject to change at Instructors discretion.
 | 14   | Intro to React, Props/State, Forms|
 | 15   | Fetch, React Router, JSON     |
 | 16   | Full Stack Build wit React/Express    | 
-| 17   | Group Git       |
+| 17   | Group Git & Project 3 Kickoff      |
 | 18   | Project Week   |
 | 19   | Project Week   |
-| 20   | Project Week |
 
 
 

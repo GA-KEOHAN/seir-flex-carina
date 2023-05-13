@@ -8,5 +8,5 @@ topics: "Forms in React"
 ---
 
 #### Forms in React
-- [**Lecture: React forms**](/react-fundamentals/week-13/day-3/lecture/forms) 
-- [**Lab: Korilla Receipts (NON-DELIVERABLE)**](/react-fundamentals/week-13/day-3/lab/korilla-receipts)
+- [**Lecture: React forms**](/react-fundamentals/week-14/day-3/lecture/forms) 
+- [**Lab: Korilla Receipts (NON-DELIVERABLE)**](/react-fundamentals/week-14/day-3/lab/korilla-receipts)
