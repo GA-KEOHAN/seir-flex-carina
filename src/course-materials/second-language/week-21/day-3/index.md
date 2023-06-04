@@ -1,14 +1,8 @@
 ---
 track: "Second Language"
-title: "Day 1"
+title: "Day 3"
 week: 21
-day: 1
+day: 3
 type: "homepage"
-topics: "Intro to Django"
+topics: "Juneteenth Holiday"
 ---
-
-- [Intro to Django - Setup and Routing](/second-language/week-21/day-2/lecture-materials/django)
-
-- [Intro to Django - Migrations](/second-language/week-21/day-2/lecture-materials/django2)
-
-- [NonDeliverable - DjangoLab](/second-language/week-21/day-2/labs/djangolab)

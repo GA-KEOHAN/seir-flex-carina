@@ -4,19 +4,14 @@ title: "Day 1"
 week: 20
 day: 1
 type: "homepage"
-topics: "Introduction to Python"
+topics: "Python OOP"
 ---
 
 # Lecture
 
-- [Intro to Python](/second-language/week-20/day-1/lecture-materials/intro-to-python)
+- [Intro to OOP](https://error-tldr.notion.site/Intro-to-Object-Oriented-Programming-in-Python-222edc4cd3be41fbb3ad28ef16c52bc9)
 
-# Labs
+# Lab
 
-- [Lab: JS-to-Python Function (non-deliverable)](/second-language/week-20/day-1/labs/functions-lab)
-- [Lab: Landscaper in Python(deliverable)](/second-language/week-20/day-1/labs/landscaper)
-
-### Bonus resources:
-
-- [**Pre-Work Resource:** Alex's Python Playlist](https://www.youtube.com/playlist?list=PLY6oTPmKnKbaTvgXqNCRXcKnqbO5j2oQn)
-
+- [Lab: Code Bar - Instructions - (non-deliverable)](https://error-tldr.notion.site/Code-Bar-Lab-5ca74264ffa54cd6b0a30ca875ff6801)
+- [Lab: Code Bar Repo  ](https://github.com/seir-flex/code_bar)

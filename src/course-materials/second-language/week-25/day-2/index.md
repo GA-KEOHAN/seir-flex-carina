@@ -1,9 +1,8 @@
 ---
 track: "Second Language"
 title: "Day 2"
-week: 24
+week: 25
 day: 2
 type: "homepage"
-topics: "Mini Project"
+topics: "Project Week"
 ---
-

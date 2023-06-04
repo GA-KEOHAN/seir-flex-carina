@@ -1,8 +1,8 @@
 ---
 track: "Second Language"
 title: "Day 3"
-week: 24
+week: 25
 day: 3
 type: "homepage"
-topics: "Capstone Kickoff"
+topics: "Project Week"
 ---

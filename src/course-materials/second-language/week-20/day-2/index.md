@@ -4,19 +4,17 @@ title: "Day 2"
 week: 20
 day: 2
 type: "homepage"
-topics: "Intro to Python"
+topics: "Python OOP Cont"
 ---
 
 # Lecture
 
-- [Intro to Python](/second-language/week-20/day-1/lecture-materials/intro-to-python)
+- [Intro to OOP](https://error-tldr.notion.site/Intro-to-Object-Oriented-Programming-in-Python-222edc4cd3be41fbb3ad28ef16c52bc9)
 
-# Labs
+# Lab
 
-- [Lab: JS-to-Python Function (non-deliverable)](/second-language/week-20/day-1/labs/functions-lab)
-- [Lab: Landscaper in Python(deliverable)](/second-language/week-20/day-1/labs/landscaper)
+- [Lab: Code Bar - Instructions - (non-deliverable)](https://error-tldr.notion.site/Code-Bar-Lab-5ca74264ffa54cd6b0a30ca875ff6801)
+- [Lab: Code Bar Repo  ](https://github.com/seir-flex/code_bar)
 
-### Bonus resources:
-
-- [**Pre-Work Resource:** Alex's Python Playlist](https://www.youtube.com/playlist?list=PLY6oTPmKnKbaTvgXqNCRXcKnqbO5j2oQn)
-
+# Homework 
+- [Postgress Installation](https://error-tldr.notion.site/PostGreSQL-Installation-8b9f330e00244d5d9ceaac451062f197)

@@ -1,13 +1,11 @@
 ---
 track: "Second Language"
-title: "Day 1"
+title: "Day 2"
 week: 21
 day: 2
 type: "homepage"
-topics: "SQL and Postgres"
+topics: "Django URLs, Views, Templates"
 ---
+- [Django URLs, Views, Templates](https://error-tldr.notion.site/Django-URLs-Views-and-Templates-1-c1a806ff1e56480eaf0e5b0022d22138)
 
-- [Lecture on SQL using Bit.io](/second-language/week-21/day-1/lecture-materials/sql)
-
-- [Deliverable Lab - Where in the World is Carmen San Diego](/second-language/week-21/day-1/lecture-materials/sql)
-
+- [Finch Collector - Deliverable](https://error-tldr.notion.site/Finch-collector-lab-Views-and-Templates-aa3ccf1b1fe1405b8d6d8c8d5976abb4)

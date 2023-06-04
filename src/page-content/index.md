@@ -87,23 +87,21 @@ All material is subject to change at Instructors discretion.
 | 18   | Project Week   |
 | 19   | Project Week   |
 
+### [Unit Four: Second Language](/second-language)
 
-
-
-### Unit Four: Second Language
-<!-- ### [Unit Four: Second Language](/second-language)
 [Intro to Python Videos](https://youtube.com/playlist?list=PLY6oTPmKnKbaTvgXqNCRXcKnqbO5j2oQn)
-[Intro to Django Videos](https://youtube.com/playlist?list=PLY6oTPmKnKbbwiftMy2RfwC8MpFbhngXT) -->
+[Intro to Django Videos](https://youtube.com/playlist?list=PLY6oTPmKnKbbwiftMy2RfwC8MpFbhngXT)
 
 | Week | Topics       |
 | ---- | ------------ |
-| 21   | Intro to Python      |
-| 22   | SQL, Intro Django     |
-| 23   | Full Stack Django App   |
-| 24   | Finish frontend, announce Project 4, Capstone, and Portfolio Requirements       |
+| 19   | Intro to Python      |
+| 20   | SQL, Intro Django     |
+| 21   | Full Stack Django App   |
+| 22   | Finish frontend, announce Project 4, Capstone, and Portfolio Requirements       |
+| 23   | Project Week |
+| 24   | Project Week |
 | 25   | Project Week |
-
-<br>
+| 26   | Project Week |
 
 
 <!-- ### [Unit Five: Capstone Essentials](/capstone-essentials)

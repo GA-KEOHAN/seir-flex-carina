@@ -1,10 +1,8 @@
 ---
 track: "Second Language"
 title: "Day 1"
-week: 24
+week: 25
 day: 1
 type: "homepage"
-topics: "Mini Project"
+topics: "Project Approvals"
 ---
-
-- Mini Project Build

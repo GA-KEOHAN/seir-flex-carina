@@ -4,20 +4,16 @@ title: "Day 3"
 week: 20
 day: 3
 type: "homepage"
-topics: "Python OOP"
+topics: "SQL and Postgres"
 ---
 
 # Week 19 - Day 3
 
 # Lecture
 
-- [Intro to Python](/second-language/week-20/day-2/lecture-materials/python-oop)
+- [Intro To SQL](https://error-tldr.notion.site/PostgreSQL-Databases-d0d206c5dda845bfb04d0387c11ebf81)
 
-# Labs
+# Lab
 
-- [Lab: Python OOP Cats (non-deliverable)](/second-language/week-20/day-2/labs/functions-lab)
-- [Lab: Space-Battle in Python(non-deliverable)](/second-language/week-20/day-2/labs/landscaper)
-
-### Bonus resources:
-
-- [**Pre-Work Resource:** Alex's Python Playlist](https://www.youtube.com/playlist?list=PLY6oTPmKnKbaTvgXqNCRXcKnqbO5j2oQn)
+- [Lab: Carmen SanDiego](https://error-tldr.notion.site/Carmen-San-Diego-bbdba7ad3deb4a80a140e12193bd6d55)
+- [Lab: Carmen SanDiego](https://github.com/seir-flex/carmen_sandiego)
